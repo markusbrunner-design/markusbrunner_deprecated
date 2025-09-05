@@ -1,0 +1,106 @@
+
+=PHP Komprimierung=
+
+==zlib Datenformat==
+<pre class="brush: php; toolbar: false; highlight: [19, 32];">
+	$string =
+	"Lorem ipsum dolor sit amet, consectetur
+	adipiscing elit. Nunc ut elit id mi ultricies
+	adipiscing. Nulla facilisi. Praesent pulvinar,
+	sapien vel feugiat vestibulum, nulla dui pretium orci,
+	non ultricies elit lacus quis ante. Lorem ipsum dolor
+	sit amet, consectetur adipiscing elit. Aliquam
+	pretium ullamcorper urna quis iaculis. Etiam ac massa
+	sed turpis tempor luctus. Curabitur sed nibh eu elit
+	mollis congue. Praesent ipsum diam, consectetur vitae
+	ornare a, aliquam a nunc. In id magna pellentesque
+	tellus posuere adipiscing. Sed non mi metus, at lacinia
+	augue. Sed magna nisi, ornare in mollis in, mollis
+	sed nunc. Etiam at justo in leo congue mollis.
+	Nullam in neque eget metus hendrerit scelerisque
+	eu non enim. Ut malesuada lacus eu nulla bibendum
+	id euismod urna sodales. ";
+
+	$compressed = gzcompress($string);
+
+	echo "Original size: ". strlen($string)."\n";
+	/* prints
+	Original size: 800
+	*/
+
+	echo "Compressed size: ". strlen($compressed)."\n";
+	/* prints
+	Compressed size: 418
+	*/
+
+	// getting it back
+	$uncompressed = gzuncompress($compressed);
+</pre>
+
+==gzip Dateiformat==
+<pre class="brush: php; toolbar: false; hightlight: [1, 2];">
+	$compressed = gzencode($string);
+	$uncompressed = gzdecode ($compressed);
+</pre>
+
+==deflate==
+<pre class="brush: php; toolbar: false; hightlight: [1, 2];">
+	$compressed   = gzdeflate('Compress me', 9);
+	$uncompressed = gzinflate($compressed);
+</pre>
+
+==serialisieren - perfekt für die Datenbank==
+===serialize===
+<pre class="brush: php; toolbar: false; hightlight: [2, 10];">
+	// convert to a string [e. g. an array]
+	$string = serialize($myvar);
+
+	echo $string;
+	/* prints
+	a:4:{i:0;s:5:"hello";i:1;i:42;i:2;a:2:{i:0;i:1;i:1;s:3:"two";}i:3;s:5:"apple";}
+	*/
+
+	// you can reproduce the original variable
+	$newvar = unserialize($string);
+
+	print_r($newvar);
+	/* prints
+	Array
+	(
+		[0] => hello
+		[1] => 42
+		[2] => Array
+			(
+				[0] => 1
+				[1] => two
+			)
+
+		[3] => apple
+	)
+	*/
+</pre>
+===serialize und base64 für die Datenbankabspeicherung===
+<pre class="brush: php; toolbar: false; hightlight: [2, 5];">
+	//to safely serialize
+	$safe_string_to_store = base64_encode(serialize($multidimensional_array));
+
+	//to unserialize...
+	$array_restored_from_db = unserialize(base64_decode($encoded_serialized_string)); 
+</pre>
+
+==unzip files==
+<pre class="brush: php; toolbar: false;">
+	$zip = zip_open("zip.zip");
+	if (is_resource($zip)) {
+	  while ($zip_entry = zip_read($zip)) {
+		$fp = fopen("zip/".zip_entry_name($zip_entry), "w");
+		if (zip_entry_open($zip, $zip_entry, "r")) {
+		  $buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
+		  fwrite($fp,"$buf");
+		  zip_entry_close($zip_entry);
+		  fclose($fp);
+		}
+	  }
+	  zip_close($zip);
+	}
+</pre>

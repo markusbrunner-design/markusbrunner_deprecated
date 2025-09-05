@@ -1,0 +1,15 @@
+
+=jQuery Tastenevents abfangen=
+
+<pre class="brush: jscript; toolbar: false;">
+	/**
+	 * Esc-Keypress-Event
+	 */
+	jQuery(document).keypress(
+		function(e) {
+			if(e.keyCode==27) {
+				// Your Code on Esc-Keypress
+			}
+		}
+	);
+</pre>

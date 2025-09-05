@@ -1,0 +1,40 @@
+
+=HTML Select-Like-Ul=
+==HTML==
+<pre class="brush: xml; toolbar: false;">
+	<ul class="special-select">
+		<li>
+			<span class="special-select-active"><a href="/active.html">Active written by PHP</a></span>
+			<ul class="special-select-sublist" style="display:none;">
+				<li><a href="/a.html" title="A">A</a></li>
+				<li><a href="/b.html" title="B">B</a></li>
+				<li><a href="/c.html" title="C">C</a></li>
+				<li><a href="/z.html" title="Z">Z</a></li>
+			</ul>
+		</li>
+	</ul>
+</pre>
+
+==CSS==
+<pre class="brush: css; toolbar: false;">
+	.special-select {
+		list-style-type: none !important;
+		width: 200px;
+	}
+	.special-select a {
+		display: block;
+	}
+	.special-select-active {
+		display: block;
+		background: transparent url(myspecialselect.png) left top no-repeat;
+		width: 140px;
+		height: 20px;
+		padding-left: 10px;
+	}
+	.special-select-sublist {
+		background: #eee;
+	}
+	.special-select-sublist li {
+		border-bottom: 1px dashed gray;
+	}
+</pre>

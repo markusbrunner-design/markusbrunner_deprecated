@@ -1,0 +1,15 @@
+
+=IE Browserweiche=
+Die Browserweiche funktioniert innerhalb des HTML als auch des CSS!
+==genau eine Version - hier: IE7==
+<pre class="brush: xml; toolbar: false;">
+	<!--[if IE7]>
+		HTML oder CSS für IE7
+	<![endif]-->
+</pre>
+==bis zu einer Version - hier: bis IE8==
+<pre class="brush: xml; toolbar: false;">
+	<!--[if lt IE8]>
+		HTML oder CSS für IE7 und kleiner
+	<![endif]-->
+</pre>

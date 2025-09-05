@@ -1,0 +1,35 @@
+
+=Songwriting=
+==Was versteht man darunter?==
+Unter Songwriting versteht man die Kombination aus den Aufgaben "Songtexte (Lyrics) schreiben" und "Sonkompostion erstellen".
+Die zwei Vorgehensweisen
+
+==Vorgehensweisen==
+Für das Songwriting gibt es generell zwei unterschiedliche Vorgehensweisen:
+# Man entwickelt Melodien, die zunächst verfeinert werden, bevor man den Songtext erstellt. Innerhalb des Songtext-Schreibens kann die Melodie angepasst werden.
+# Man schreibt zuerst den Songtext und leitet daraufhin eine dazu passende Melodie ab. Der Songtext bleibt dabei unangetastet; er ist bereits "in Blei gegossen".
+
+Jede dieser beiden Vorgehensweisen hat seine Vor- und Nachteile. Während das Vorgehen 1. sich optimal für Einsteiger in diesem Thema eignet, muss man für das Vorgehen 2. bereits Profi sein, um stimmige Resultate zu erstellen. Die Herausforderung bei dem 2. Vorgehen liegt nämlich darin, dass ein bereits fertiger unanpassbarer Songtext vorliegt, dessen Stimmung analysiert und möglichst genau umgesetzt werden muss. Bei Vorgehen 1. hingegen wird eine Stimmung durch die Melodie vorgegeben, die relativ einfach in stimmige Texte umgesetzt werden kann. Jedoch besteht dabei die Gefahr, dass sich alle erstellten Lieder stark ähneln, da Komponisten meist Vorlieben haben, die sie bei Gestaltungsfeiheit auch oft redundant einsetzen. Vor allem bei Neulingen in diesem Gebiet lässt sich das aber gar nicht vermeiden.
+
+Hierzu auch gerne ein Beispiel, das der Realität entliehen ist: Wenn Bands formiert werden, deren Mitglieder erst seit geringer Zeit ihre Instrumente spielen, mangelt es oft an dem "breiten Wissen" und am Feeling. Meist wird ein Standard-4/4-Takt vom Schlagzeuger gespielt, der mit einer leicht zu spielenden Melodie der Gitarre (entweder Power-Chords oder Standard-Akkorde) gefüllt wird. Der Bass spielt genau die gleichen Noten, die der Gitarrist als Akkorder spielt nach und der Sänger oder die Sängerin singt darüber eine Melodie, die entweder der Gitarrenmelodie bzw. Bassmelodie entspricht, oder nur zwei Noten umfasst, die abgewechselt werden; der Songtext wurde hierbei natürlich im Nachhinein erstellt - Dieses realitätsnahe Beispiel entstammt genauso meinen Anfängen, wie auch die vieler anderer Musiker, die noch in den Kinderschuhen stecken. Ich will diese Phase hiermit nicht abwerten, da sie sinnvoll und notwendig ist, um das Gespür zu entwickeln und sich weiterzuentwickeln. Jedoch sollte man in diesem Stadion nicht für Ewigkeiten verharren.
+
+Umso mehr Fertigkeiten man erlangt, desto breiter kann das musikalische Spektrum der Lieder werden. Um sich also in diesem Stadion auf eine grötmögliche Vielfalt der Ideen einzulassen, ist es sinnvoll zumindest ab und zu das Vorgehen 2. anzuwenden, um die Phantasiefähigkeit und Experimentierfreudigkeit anzuspornen.
+Songtexte schreiben
+
+Beim Schreiben von Songtexten geht es vor allem darum eine interessante Geschichte zu erzählen. Je nachdem, ob die spätere Hörerschaft des Liedes sich stark auf das Liede einlassen müssen kann oder nicht, sollte das Spektrum des Wortschatzes zum Schreiben des Textes angepasst werden. Will man beispielsweise ein radioreifes Lied schreiben, sollte man nicht die ausgeflipptesten Wörter verwenden, die man ohne Nachschlagen nicht versteht. Hingegen kann aber genau dies das Ziel von sehr tiefsinnigen Liedern sein, die den Hörer herausfordern wollen, sich mit dem Lied zu beschäftigen.
+
+Wichtig ist aber generell bei Songtexten, dass die bildlicht Sprache verwendet werden sollte, um Emotionen beim Hörer hervorzurufen. Standard-Texte wie "I love you and want to be with you" sind zwar nicht nutzlos, aber sollten nicht zu häufig vorkommen. Bildliche Sprache, die Gefühle hervorruft, kann hingegen viel spannender und fantasieförderlicher sein: "Im Sonnenschein erblühten Deine Augen und glänzten wie ein Sonnenstrahl, der sanft mein Herz durchstrahlte und einen Hauch an Wärme herbeiwehte".
+
+Doch allein die bildliche Sprache macht den Text nicht gut singbar. Hierfür gibt es mehrere Methoden, die aus dem Gedichteschreiben hervorgehen. Ein Lied besteht aus...
+* Strophen (Verse) und Refrains (Chorus)
+* In Strophen und Refrains kommt meist eine geradzahlige Anzahl an  Zeilen vor
+* In jeder Zeile sollten, wenn möglich, gleich viele Silben vorkommen (kann zwischen Strophe und Refrain unterschiedlich sein)
+* Reime erleichtern es dem Sänger ein einheitliches Klangbild zu erzeugen, sind aber keinesfalls zwingend notwendig
+
+Mithilfe dieser Informationen ist es bereits möglich einen ansehnlichen Songtext zu schreiben. Doch wie immer gilt hierbei das Motto: "Übung macht den Meister".
+Songkompositionen erstellen
+
+Das Thema Songkompositionen erstellen hängt stark davon ab, wie weit man sich mit den Themen der Klang-/Ton- und Instrumentenlehre beschäftigt hat. Ob man sich sagt, dass man jetzt ein trauriges Lied mit der Tonart Am schreiben will und einem dann gleich die Assoziationen "Paralleltonart C", Streicher (langsam spielende Bratschen und Violinen [eine Oktave höher] und eine klagenden Vibrato-Cello-Klang, bei dem nur eine Note über den Takt hinweg gestrichen wird... in den Kopf kommen, oder ob man einfach mal auf dem Instrument herumklimpert, ist egal. Durch beide Wege können sagenhafte Lieder entstehen, die die Welt bereichern werden. Doch das wichtigste hierbei ist ja sowieso nur eines: "Die Freude an der Musik selbst und die Freude daran selber Musik zu erschaffen".
+
+==Audio-Kreation==
+[http://www.markusbrunner-design.de/fileadmin/content/dokumente/medialex/Studienarbeit_Audio-Kreation.pdf|Studienarbeit zum Thema Audio-Kreation]

@@ -1,0 +1,85 @@
+
+=PHP Stringoperationen=
+
+==URLs kodieren==
+===rawurlencode===
+<pre class="brush: php; toolbar: false;">
+	rawurlencode($str); // nach RFC-Standard
+	rawurldecode($str); // nach RFC-Standard
+</pre>
+===urlencode===
+<pre class="brush: php; toolbar: false;">
+	urlencode($str); // nicht nach RFC-Standard [ersetzt Leerzeichen mit +]
+	urldecode($str); // nicht nach RFC-Standard [ersetzt Leerzeichen mit +]
+</pre>
+
+==Texte kürzen==
+<pre class="brush: php; toolbar: false; highlight: 13;">
+	/**
+	 * Returns a shortened text, cutted at the first $cuttingString after int $offset. So no word is returned in a half if $cuttingString = ' ' or '.'.
+	 * 
+	 * @param string $text
+	 * @param int    $offset (starting place to search for the next ' ' to cut
+	 * @param bool   $removeHTML = false
+	 * @param string $cuttingString = ' '
+	 * @param string $trailingString = '...'
+	 * @param array  $ar_replace = array()
+	 * @param array  $ar_replaceWith = array()
+	 * @return string
+	 */
+	private function subText($text, $offset, $removeHTML = false, $cuttingString = ' ', $trailingString = '...', $ar_replace = array(), $ar_replaceWith = array()) {
+		if(!empty($text)) { 
+			// replacing
+			$text = str_replace($ar_replace, $ar_replaceWith, $text);
+			// removes HTML
+			if($removeHTML) {
+				$text = strip_tags($text);				
+			}
+			// string cutting
+			if(strlen($text) >= (int)$offset) {			
+				if(empty($cuttingString)) {
+					$cutPosition = $offset;
+				} else {
+					$cutPosition = strpos($text,$cuttingString,$offset);
+				}
+				return substr($text, 0, $cutPosition).$trailingString;
+			} else {
+				return $text;				
+			}
+		} else { return ''; }
+	}
+</pre>
+
+==Zeilenumbrüche entfernen==
+<pre class="brush: php; toolbar: false; highlight: 9;">
+	/**
+	 * removes line-feeds (\r MAC, \n UNIX, \r\n WINDOWS) from text and offers optional strip_tags and trim
+	 * 
+	 * @param string $text given text for manipulation
+	 * @param bool $bool_strip_tags enables strip_tags
+	 * @param bool $bool_trim enables trim
+	 * @return string manipulated $text
+	 */
+	public static function removeNLFromText($text, $bool_strip_tags=false, $bool_trim=true) {
+		if($bool_strip_tags) $text = strip_tags($text);
+		if($bool_trim) $text = trim($text);
+		return str_replace(array("\r","\n"), " ", $text);
+	}
+</pre>
+
+==Den Inhalt zwischen zwei Strings erhalten "part between"==
+<pre class="brush: php; toolbar: false; highlight: 7;">
+	/**
+	 * @return the Part of a string between two other strings
+	 * @param $str given string
+	 * @param $a left string for cutting
+	 * @param $b right string for cutting
+	 */
+	function getPartBetween($str, $a, $b){
+		$start = strpos($str,$a) + strlen($a);
+		if(strpos($str,$a) === false) return false;
+		$length = strpos($str,$b,$start) - $start;
+		if(strpos($str,$b,$start) === false) return false;
+		return substr($str,$start,$length);
+	}
+</pre>

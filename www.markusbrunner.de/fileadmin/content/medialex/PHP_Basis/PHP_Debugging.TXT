@@ -1,0 +1,20 @@
+
+=PHP Debugging=
+==PHP Konstanten für die Auffindbarkeit==
+===FILE===
+mit 
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	echo 'Datei: '.__FILE__; 
+</pre>
+kann man den Pfad zur aktuellen Datei ausgeben lassen!
+===LINE===
+mit 
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	echo 'Zeile: '.__LINE__; 
+</pre>
+kann man die Zeile der Ausgabe in einer Datei ausgeben lassen!
+===Auffindbarer Debug===
+ein sinnvoller Debug, der wieder auffindbar sein soll ist also z.B. so: 
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	echo 'Variable: '.$var.' :-: Datei: '.__FILE__.' Zeile: '.__LINE__;
+</pre>

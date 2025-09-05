@@ -1,0 +1,39 @@
+
+=htaccess expire=
+Quelle: [http://www.tipsandtricks-hq.com/how-to-add-far-future-expires-headers-to-your-wordpress-site-1533|TipAndTricks Artikel]
+
+This sets the expiry date of the file 2 months into the future from the current time. The following values can be used to specify the time period:
+* years
+* months
+* weeks
+* days
+* hours
+* minutes
+* seconds
+
+eg. ExpiresDefault "access plus 14 days"
+
+To add expires header to the image, CSS, javascript files add the following to your .htaccess file
+
+==Expire Header==
+<pre class="brush: plain; toolbar: false;">
+	<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css|swf)$">
+	ExpiresDefault "access plus 2 hours"
+	</FilesMatch>
+</pre>
+
+==Expire images header==
+<pre class="brush: plain; toolbar: false;">
+	ExpiresActive On
+	ExpiresDefault A0
+	ExpiresByType image/gif A2592000
+	ExpiresByType image/png A2592000
+	ExpiresByType image/jpg A2592000
+	ExpiresByType image/jpeg A2592000
+	ExpiresByType image/ico A2592000
+	ExpiresByType text/css A2592000
+	ExpiresByType text/javascript A2592000
+	A2592000 means 1 month in the future (60*60*24*30=2592000)
+</pre>
+
+Keep in mind that when you use expires header the files are cached in the browser until it expires so do not use this on files that changes frequently. If you change/update a file that has a far future expiry (eg. CSS or javascript files) then you should rename that file and use the renamed version so the browser doesn't fetch the old file.

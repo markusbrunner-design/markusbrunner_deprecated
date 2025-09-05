@@ -1,0 +1,72 @@
+
+=Google API - Frameworks laden und verwenden=
+
+<pre class="brush: jscript; toolbar: false;">
+	/* google load */
+	google.load("mootools", "1");
+	google.load("jquery", "1");
+
+	/* google api (outer wrap) - begin */
+	google.setOnLoadCallback(function() {
+
+	/* mootools (inner wrap) - begin */
+	(function($) {
+		window.addEvent('domready', function() {
+			
+			/* MOOTOOLS here - Example: */
+			// mootools class with delayed function
+			var myNewClass = new Class({
+				Implements: [Events,Options,Chain],
+				options: {
+					delayTime: 1000
+				},
+				initialize: function(options){
+					// set options
+					this.setOptions(options);
+					
+					// start delayed function
+					(function(){ 
+						this.doSomething();
+					}).delay(this.options.delayTime,this);
+				},
+				doSomeAction: function(){
+					/* example for a loop - after ready start next step */
+					/* you can stop it with this.slideFx.cancel(); */
+					if(this.currentIter < this.maxIter) {
+						this.slideFx = new Fx.Tween(this.contentElements[nextStep], {duration: this.options.slideTime, onComplete: (function(){this.doSomeAction();}).bind(this)});
+					}
+				},
+				doSomething: function(){
+					this.fireLog('doSomething');
+				}
+				complete: function(){
+					 this.fireEvent('complete');
+				},
+				fireLog: function(value){
+					if(typeof console != undefined && console) {
+						console.log(value);
+					}
+				}
+			});
+			
+			// init mootools class
+			var myNewClassObj = new myNewClass({
+				delayTime: 500
+			});
+		});
+	})(document.id);
+	/* mootools (inner wrap) - end */
+
+	/* jquery (inner wrap) - begin */
+	(function($) {
+		$(document).ready(function(){
+		
+			/* JQUERY here - Example: */
+			$('#print').hide();
+		});
+	})(jQuery);
+	/* jquery (inner wrap) - end */
+
+	});
+	/* google api (outer wrap) - end */
+</pre>

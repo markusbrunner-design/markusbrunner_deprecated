@@ -1,0 +1,325 @@
+
+=PHP Dateioperationen=
+
+==Dateityp für die Ausgabe bestimmen==
+===Dateityp CSV===
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	header('Content-Type: text/csv; charset=UTF-8');
+	echo $myCSV;
+	exit;
+</pre>
+===Dateityp XML===
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	header('Content-Type: text/xml; charset=UTF-8');
+	echo $myXML;
+	exit;
+</pre>
+==Dateityp PDF ausgeben==
+<pre class="brush: php; toolbar: false; highlight: [2, 4, 6];">
+	// PDF Datei ausgeben
+	header('Content-type: application/pdf');
+	// wird downloaded.pdf benannt
+	header('Content-Disposition: attachment; filename="downloaded.pdf"');
+	// originale Datei heißt
+	readfile('original.pdf');
+</pre>
+
+==Dateien einlesen==
+===Dateien nach Muster suchen===
+<pre class="brush: php; toolbar: false; highlight: 2;">
+	//find
+	$files = glob('../images/a*.jpg');
+
+	// applies the function to each array element
+	$files = array_map('realpath',$files);
+
+	print_r($files);
+	/* output looks like:
+	Array
+	(
+		[0] => C:\wamp\www\images\apple.jpg
+		[1] => C:\wamp\www\images\art.jpg
+	)
+	*/
+</pre>
+===Einlesen Standard===
+<pre class="brush: php; toolbar: false;">
+	//read
+	$handle = fopen ('./typo3conf/localconf.php', 'r');
+	while (!feof($handle)) {
+		$buffer = fgets($handle, 4096);
+		echo $buffer;
+	}
+	fclose ($handle);
+</pre>
+===Einlesen einfach===
+<pre class="brush: php; toolbar: false; highlight: 3;">
+	//read
+	$file = PATH_site.'fileadmin/content/myfile.txt';
+	$fileContent = @file_get_contents($file);
+</pre>
+===Einlesen einer URL===
+<pre class="brush: php; toolbar: false; highlight: 4;">
+	$service = "http://mydomain.de/?var=".$var;
+	if ($var.length != 0 ){
+		//Remote-Auslesung der oben definierten Service-Adresse
+		$result = @file($service);
+	}
+</pre>
+
+==Dateien schreiben==
+===Schreiben Standard===
+<pre class="brush: php; toolbar: false;">
+	//write
+	$handle1 = fopen("headlines.txt", "w+");
+	fwrite($handle1, $headline."\n".$handle0);
+	fclose($handle1);
+</pre>
+===Schreiben einfach===
+<pre class="brush: php; toolbar: false; highlight: 4;">
+	// write
+	$file = PATH_site.'fileadmin/content/myfile.txt';
+	$content = 'content';
+	@file_put_contents($file,$content,LOCK_EX);
+</pre>
+
+==Datei kopieren und löschen==
+===Datei kopieren===
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	copy($fileSource,$fileDestination);
+</pre>
+===Datei löschen===
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	unlink($file);
+</pre>
+===Beispiel für den Upload von Daten===
+<pre class="brush: php; toolbar: false; highlight: [4, 7];">
+	// copies an jpg (internal or external url) to internal imgPath, deletes the original image if internal
+	if(!empty($image)) {
+		// copies the image
+		copy($image,$this->imgPath.md5($image).'.jpg');
+		// deletes the source image (if internal)
+		if($isInternal) {
+			unlink($image);
+		}
+	}
+</pre>
+
+==Dateien hochladen==
+===Upload-Funktion===
+<pre class="brush: php; toolbar: false;">
+	/**
+	 * @author	Markus Brunner
+	 * @date		20110209
+	 * @comment	Uploads a file
+	 *
+	 * @html		<form action="url.php" enctype="multipart/form-data" method="post"><input id="uploaded_file" name="uploaded_file" type="file" /><input type="submit" value="upload file" /></form>
+	 * @php			$uploadResult = uploadFormFiles(array('uploaded_file'));
+	 *
+	 * @param		array $uploadNames					Array of all Form > input[type="file"] > name e.g. array('uploaded_file')
+	 * @param		boolean	$uploadIfExists			Boolean: upload file although file with same name already exists in upload folder if true; default: false
+	 * @param		boolean $replaceExisting		Boolean: deletes existing files with same filename if true; default: false
+	 * @param		int	$allowedFileSize				Int of Maximum of Filesize in Byte e.g. 524288 for 0,5 MB
+	 * @param		String $uploadPath					String of Upload Path relative to this file e.g. 'upload/' - folder must exist!
+	 * @param		array $allowedFileTypes			Array of all allowed file types e.g. for standard images array('image/jpeg','image/jpg','image/gif','image/png')
+	 * @return	array												Array of uploaded files
+	 *						name
+	 *						type
+	 *						tmp_name
+	 *						error
+	 *						errorType
+	 *						size
+	 *						uploadFileName
+	 */
+	function uploadFormFiles(Array $uploadNames, $uploadIfExists = false, $replaceExisting = false, $uploadPath = 'upload/', $allowedFileSize = 524288, Array $allowedFileTypes = array('image/jpeg','image/jpg','image/gif','image/png')) {
+		
+		$result = array();
+
+		foreach($uploadNames AS $uploadName) {
+
+			# upload config
+			$uploadFile = $_FILES[$uploadName];
+			$uploadFile['uploadFileName'] = $uploadPath.basename($uploadFile['name']);
+			$uploadFileExists = file_exists($uploadFile['uploadFileName']);
+
+			# delete file if $uploadIfExists && $replaceExisting
+			if($uploadFileExists && $uploadIfExists && $replaceExisting) {
+				if(!(unlink($uploadFile['uploadFileName']))) {
+					$uploadFile['error'] = 1;
+					$uploadFile['errorType'] = 'error deleting file';
+				}
+			}
+			# upload file with timestamp suffix if $uploadIfExists && NOT $replaceExisting
+			else if($uploadFileExists && $uploadIfExists && !$replaceExisting) {
+				$temp_uploadFileName = substr($uploadFile['name'], 0, strrpos($uploadFile['name'], '.')).'_'.date('U').substr($uploadFile['name'], strrpos($uploadFile['name'], '.'), strlen($uploadFile['name']));
+				$uploadFile['name'] = $temp_uploadFileName;
+				$uploadFile['uploadFileName'] = $uploadPath.basename($temp_uploadFileName);
+			}
+
+			# check if file exists
+			if(empty($uploadFile['error']) && !$uploadIfExists && $uploadFileExists) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'file exists already';
+			}
+
+			# check upload size
+			if(empty($uploadFile['error']) && $uploadFile['size'] > (int) $allowedFileSize) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'file too big';
+			}
+
+			# check upload file type
+			if(empty($uploadFile['error']) && !(in_array($uploadFile['type'], $allowedFileTypes))) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'wrong file type';
+			}
+
+			# upload file
+			if(empty($uploadFile['error']) && !(move_uploaded_file($uploadFile['tmp_name'], $uploadFile['uploadFileName']))) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'upload crashed';
+			}
+
+			$result[] = $uploadFile;
+		}
+
+		return $result;
+	}
+</pre>
+
+==Dateien konvertieren==
+===PHP Native Methode===
+geht leider nicht immer!
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	string mb_detect_encoding  (  string $str  [,  mixed $encoding_list = mb_detect_order()  [,  bool $strict = false  ]] )
+</pre>
+==P=HP Funktion zur Überprüfung, ob UTF-8; NO 1===
+<pre class="brush: php; toolbar: false;">
+	// Returns true if $string is valid UTF-8 and false otherwise.
+	function is_utf8($string) {
+	   
+		// From http://w3.org/International/questions/qa-forms-utf-8.html
+		return preg_match('%^(?:
+			  [\x09\x0A\x0D\x20-\x7E]            # ASCII
+			| [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
+			|  \xE0[\xA0-\xBF][\x80-\xBF]        # excluding overlongs
+			| [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}  # straight 3-byte
+			|  \xED[\x80-\x9F][\x80-\xBF]        # excluding surrogates
+			|  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
+			| [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
+			|  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
+		)*$%xs', $string);
+	   
+	} // function is_utf8
+</pre>
+===PHP Funktion zur Überprüfung, ob UTF-8; NO 2===
+<pre class="brush: php; toolbar: false;">
+	function is_utf8($str) {
+		$c=0; $b=0;
+		$bits=0;
+		$len=strlen($str);
+		for($i=0; $i<$len; $i++){
+			$c=ord($str[$i]);
+			if($c > 128){
+				if(($c >= 254)) return false;
+				elseif($c >= 252) $bits=6;
+				elseif($c >= 248) $bits=5;
+				elseif($c >= 240) $bits=4;
+				elseif($c >= 224) $bits=3;
+				elseif($c >= 192) $bits=2;
+				else return false;
+				if(($i+$bits) > $len) return false;
+				while($bits > 1){
+					$i++;
+					$b=ord($str[$i]);
+					if($b < 128 || $b > 191) return false;
+					$bits--;
+				}
+			}
+		}
+		return true;
+	}
+</pre>
+===PHP Funktion zur Überprüfung, ob UTF-8; NO 3===
+<pre class="brush: php; toolbar: false;">
+	//    utf8 encoding validation developed based on Wikipedia entry at:
+	//    http://en.wikipedia.org/wiki/UTF-8
+	//
+	//    Implemented as a recursive descent parser based on a simple state machine
+	//    copyright 2005 Maarten Meijer
+	//
+	//    This cries out for a C-implementation to be included in PHP core
+	function valid_1byte($char) {
+		if(!is_int($char)) return false;
+		return ($char & 0x80) == 0x00;
+	}
+	function valid_2byte($char) {
+		if(!is_int($char)) return false;
+		return ($char & 0xE0) == 0xC0;
+	}
+	function valid_3byte($char) {
+		if(!is_int($char)) return false;
+		return ($char & 0xF0) == 0xE0;
+	}
+	function valid_4byte($char) {
+		if(!is_int($char)) return false;
+		return ($char & 0xF8) == 0xF0;
+	}
+	function valid_nextbyte($char) {
+		if(!is_int($char)) return false;
+		return ($char & 0xC0) == 0x80;
+	}
+	function valid_utf8($string) {
+		$len = strlen($string);
+		$i = 0;   
+		while( $i < $len ) {
+			$char = ord(substr($string, $i++, 1));
+			if(valid_1byte($char)) {    // continue
+				continue;
+			} else if(valid_2byte($char)) { // check 1 byte
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} else if(valid_3byte($char)) { // check 2 bytes
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} else if(valid_4byte($char)) { // check 3 bytes
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} // goto next char
+		}
+		return true; // done
+	}
+</pre>
+===PHP Funktion zur Überprüfung, ob ISO Latin 1===
+<pre class="brush: php; toolbar: false;">
+	function IsLatin1($str) {
+		return (preg_match("/^[\\x00-\\xFF]*$/u", $str) === 1);
+	}
+</pre>
+
+==Verzeichnisse erstellen==
+<pre class="brush: php; toolbar: false;">
+	/**
+	 * make a dir
+	 *
+	 * @param string $dirName
+	 * @param int    $rights=0777
+	 */
+	function mkdir_r($dirName, $rights=0777)
+	{
+		$dirs = explode('/', $dirName);
+		$dir='';
+		foreach ($dirs as $part) 
+		{
+			$dir.=$part.'/';
+			if (!is_dir($dir) && strlen($dir)>0)
+				mkdir($dir, $rights);
+		}
+	}
+</pre>

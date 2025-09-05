@@ -1,0 +1,31 @@
+
+=mootools ganz einfach JSON per Ajax laden=
+
+==JAVASCRIPT - Client==
+<pre class="brush: jscript; toolbar: false;">
+	/* domready-event */
+	window.addEvent('domready', function() {
+		/* change-event */
+		$('destination').addEvent('change',function(){	
+			/* request mit Object der JSON-Daten als Ziel */
+			var req = new Request({
+				method: 'get',
+				url: 'http://www.test.de/meininhalt.php',
+				//onRequest: function() { alert('Request made. Please wait...'); },
+				onComplete: function(response) {
+					/* HTML-Container anzeigen */
+					$('ajax_select_custom_1_wrapper').setStyle('display','block');
+					/* JSON-Object */
+					var responseObj = JSON.decode(response);
+					console.log(responseObj);
+					...
+				}
+			}).send();
+		});
+	});
+</pre>
+
+==PHP - Server==
+<pre class="brush: php; toolbar: false;">
+	echo '{0:{"value":"1",text:"destination: bla"},1:{"value":"2",text:"timeperiod: blub"}}';
+</pre>

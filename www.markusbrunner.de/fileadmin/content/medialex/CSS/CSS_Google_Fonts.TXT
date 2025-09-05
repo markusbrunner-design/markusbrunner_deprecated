@@ -1,0 +1,48 @@
+
+=Google Fonts=
+Quelle: [http://www.google.com/webfonts|Google Fonts]
+==HTML==
+<pre class="brush: xml; toolbar: false;">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+	<script type="text/javascript">
+	  WebFont.load({
+		google: {
+		  families: [ \'Tangerine\', \'Lobster\', \'Cantarell\', \'Yanone Kaffeesatz:700\', \'Droid Serif:italic\']
+		}
+	  });
+	</script>
+</pre>
+==CSS==
+<pre class="brush: css; toolbar: false;">
+	.wrapper .name {
+		font-size: 40px;
+		line-height: 50px;
+		text-shadow: 4px 4px 4px #aaa;
+	}
+	.wrapper .name.n2 {
+		font-family: \'Droid Serif\', serif;
+		font-size: 40px;
+		line-height: 50px;
+	}
+	.wrapper .name.n3 {
+		font-family: \'Yanone Kaffeesatz\', serif;
+		font-size: 40px;
+		line-height: 50px;
+	}
+	.wrapper .name.n4 {
+		font-family: \'Cantarell\', serif;
+		font-size: 50px;
+		line-height: 60px;
+	}
+	.wrapper .name.n5 {
+		font-family: \'Tangerine\', serif;
+		font-size: 70px;
+		line-height: 80px;
+	}
+	.wrapper .content {
+		font-family: \'Lobster\', serif;
+		font-size: 60px;
+		line-height: 70px;
+		text-shadow: 4px 4px 4px #aaa;
+	}
+</pre>

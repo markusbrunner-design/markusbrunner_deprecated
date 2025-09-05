@@ -1,0 +1,54 @@
+
+=SQL Schnipsel=
+
+==Filterungen==
+===Kommaseparierte Liste filtern===
+<pre class="brush: sql; toolbar: false;">
+	SELECT * FROM mytable WHERE FIND_IN_SET('.intval($pk).',columnwithpks)
+</pre>
+
+==Bedingungen==
+===Bedingung im select===
+<pre class="brush: sql; toolbar: false;">
+	SELECT IF (t.price > 0, p.price + t.price, p.price + d.baseprice) AS price FROM mytable
+</pre>
+
+==Konvertierung==
+===Integer-Konvertierung===
+<pre class="brush: sql; toolbar: false;">
+	/*
+	 * INTEGER-Konvertierung
+	 * um einen Integer aus einem String zu bekommen gibt es zwar eigentlich 
+	 * eine CAST(wert AS type) Funktion, diese schlägt aber fehl.
+	 * Um einen Integer aus einem String erhalten einfach eine mathematische
+	 * Operation mit dem String ausführen (+0 oder *1)
+	 */
+	REPLACE(REPLACE(REPLACE(price,'.',''),',',''),'-','')+0
+</pre>
+
+==Hilfsfunktionen==
+===Letzte ID, die eingefügt wurde===
+<pre class="brush: sql; toolbar: false;">
+	SELECT LAST_INSERT_ID() AS last_insert_id;
+</pre>
+====TYPO3-Funktion für last_insert_id====
+<pre class="brush: php; toolbar: false;">
+	/**
+	 * TYPO3 MySQL Function for getting the last Insert ID
+	 */
+	public function getLastMySQLInsertId() {
+		$res = $GLOBALS['TYPO3_DB']->sql_query('SELECT LAST_INSERT_ID() AS last_insert_id;');
+		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+		return $row['last_insert_id'];
+	}
+</pre>
+===Ersetzungen===
+====REPLACE====
+<pre class="brush: sql; toolbar: false;">
+	UPDATE trip_types SET picture = REPLACE(picture, "/fileadmin", "fileadmin")
+</pre>
+====REPLACE INTO====
+erstellt immer einen neuen Index und ersetzt oder erstellt einen Insert, je nachdem ob die primary keys schon vorhanden sind
+<pre class="brush: sql; toolbar: false;">
+	REPLACE INTO tbl SET name="" []
+</pre>

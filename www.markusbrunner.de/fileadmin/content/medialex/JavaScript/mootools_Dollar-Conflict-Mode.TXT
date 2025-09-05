@@ -1,0 +1,10 @@
+
+=Mootools $-Konflikt umgehen=
+
+* in allen Dateien $m statt $ verwenden
+* alle Aufrufe statt mit $ nun mit $m ausführen (der Aufruf muss bevor irgendeine Aktion statt findet und weitere Frameworks inkludiert werden, gemacht werden, damit er greift):
+
+<pre class="brush: jscript; toolbar: false;">
+	// Conflict of $ -> use $m instead of $
+	var $m = document.id;
+</pre>

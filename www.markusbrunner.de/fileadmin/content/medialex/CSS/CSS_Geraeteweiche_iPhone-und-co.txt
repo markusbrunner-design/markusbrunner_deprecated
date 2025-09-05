@@ -1,0 +1,164 @@
+
+=Geräteweiche - Device switch=
+
+==iPad==
+<pre class="brush: css; toolbar: false;">
+	@media only screen and (device-width: 768px) {
+		/* For general iPad layouts */
+	}
+
+	@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+		/* For portrait layouts only *
+	}
+
+	@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+		/* For landscape layouts only */
+	}
+</pre>
+
+
+==iPad und iPhone==
+<pre class="brush: css; toolbar: false;">
+	@media only screen and (device-width: 768px), only screen and (max-device-width: 480px) {
+		/* Styles */
+	}
+</pre>
+
+==Media Queries==
+Quellen: [http://www.webdesignerwall.com/tutorials/css3-media-queries/|Webdesignerwall Tutorial], [http://www.webdesignerwall.com/demo/media-queries/|Webdesignerwall Demo]
+<pre class="brush: css; toolbar: false;">
+	/* only for viewing areas smaller than 601px */
+	@media screen and (max-width: 600px) {
+	  .class {
+		background: #ccc;
+	  }
+	}
+	/* only for viewing areas between 600px and 900px */
+	@media screen and (min-width: 600px) and (max-width: 900px) {
+	  .class {
+		background: #333;
+	  }
+	}
+	/* iPhone Display */
+	@media screen and (max-device-width: 480px) {
+	  .class {
+		background: #000;
+	  }
+	}
+</pre>
+
+==iPhone 4==
+<pre class="brush: xml; toolbar: false;">
+	<link rel="stylesheet" media="only screen and (-webkit-min-device-pixel-ratio: 2)" type="text/css" href="iphone4.css" />
+</pre>
+
+==iPad==
+<pre class="brush: xml; toolbar: false;">
+	<link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css">
+	<link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css">
+</pre>
+
+
+==Media Queries==
+Quelle: [http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries|Stuff and Nonsense]
+<pre class="brush: css; toolbar: false;">
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen 
+	and (min-device-width : 320px) 
+	and (max-device-width : 480px) {
+	/* Styles */
+	}
+
+	/* Smartphones (landscape) ----------- */
+	@media only screen 
+	and (min-width : 321px) {
+	/* Styles */
+	}
+
+	/* Smartphones (portrait) ----------- */
+	@media only screen 
+	and (max-width : 320px) {
+	/* Styles */
+	}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) {
+	/* Styles */
+	}
+
+	/* iPads (landscape) ----------- */
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) 
+	and (orientation : landscape) {
+	/* Styles */
+	}
+
+	/* iPads (portrait) ----------- */
+	@media only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) 
+	and (orientation : portrait) {
+	/* Styles */
+	}
+
+	/* Desktops and laptops ----------- */
+	@media only screen 
+	and (min-width : 1224px) {
+	/* Styles */
+	}
+
+	/* Large screens ----------- */
+	@media only screen 
+	and (min-width : 1824px) {
+	/* Styles */
+	}
+
+	/* iPhone 4 ----------- */
+	@media
+	only screen and (-webkit-min-device-pixel-ratio : 1.5),
+	only screen and (min-device-pixel-ratio : 1.5) {
+	/* Styles */
+	}
+</pre>
+
+Of course, you might not want all your responsive design styles inside one huge stylesheet. If that’s the case, you can serve alternative stylesheets using the same queries as attributes on your link elements.
+
+<pre class="brush: xml; toolbar: false;">
+	<link rel="stylesheet" href="smartphone.css" 
+	media="only screen and (min-device-width : 320px) 
+	and (max-device-width : 480px)">
+
+	<link rel="stylesheet" href="smartphone-landscape.css" 
+	media="only screen and (min-width : 321px)">
+
+	<link rel="stylesheet" href="smartphone-portrait.css" 
+	media="only screen and (max-width : 320px)">
+
+	<link rel="stylesheet" href="ipad.css" 
+	media="only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px)">
+
+	<link rel="stylesheet" href="ipad-landscape.css" 
+	media="only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) 
+	and (orientation : landscape)">
+
+	<link rel="stylesheet" href="ipad-portrait.css" 
+	media="only screen 
+	and (min-device-width : 768px) 
+	and (max-device-width : 1024px) 
+	and (orientation : portrait)">
+
+	<link rel="stylesheet" href="widescreen.css" 
+	media="only screen and (min-width : 1824px)">
+
+	<link rel="stylesheet" href="iphone4.css" 
+	media="only screen 
+	and (-webkit-min-device-pixel-ratio : 1.5), 
+	only screen and (min-device-pixel-ratio : 1.5)">
+</pre>

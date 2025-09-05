@@ -1,0 +1,13 @@
+
+=HTML5 Video=
+<pre class="brush: xml; toolbar: false;">
+	<video class="video" poster="cat.jpg" width="352" height="264" controls autobuffer>
+		<source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+		<source src="cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
+	</video>
+</pre>
+
+==Zur Unterstützung alter Browser dieses Script im Head einfügen==
+<pre class="brush: xml; toolbar: false;">
+	<script src="http://html5media.googlecode.com/svn/trunk/src/html5media.min.js"></script>
+</pre>

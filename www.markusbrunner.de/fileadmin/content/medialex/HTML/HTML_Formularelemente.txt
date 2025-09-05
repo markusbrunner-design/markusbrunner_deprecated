@@ -1,0 +1,103 @@
+
+=HTML Formularelemente=
+<pre class="brush: xml; toolbar: false;">
+	<form action="" name="form" id="form" method="post">
+		<input id="hidden" name="hidden" type="hidden" value="versteckt" />
+		
+		<fieldset>
+			<legend>Standardinputs</legend>
+			<label for="first_name">Vorname</label>
+			<input id="first_name" name="first_name" type="text" value="Vorname" tabindex="1" />
+			<br class=".clearer"/>
+			<br class=".clearer"/>
+			
+			<label for="password">Passwort</label>
+			<input id="password" name="password" type="password" value="Passwort" tabindex="2" />
+			<br class=".clearer"/>
+		</fieldset>
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<fieldset>
+			<legend>Nur zum Feedback</legend>
+			<label for="readonly">Nur lesbar</label>
+			<input id="readonly" name="readonly" type="text" readonly />
+			<br class=".clearer"/>
+			<br class=".clearer"/>
+			
+			<label for="disabled">Disabled</label>
+			<input id="disabled" name="disabled" type="text" disabled />
+			<br class=".clearer"/>
+		</fieldset>
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="textarea">Nachricht</label>
+		<textarea id="textarea" name="textarea" cols="50" rows="20" tabindex="3">
+			Textarea
+		</textarea>
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="select">Auswahl</label>
+		<select id="select" name="select" size="1" tabindex="4" />
+			<option value="1" selected="selected">Eintrag 1</option>
+			<option value="2" >Eintrag 2</option>
+			<option value="3" >Eintrag 3</option>
+		</select>
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="selectmultiple">Auswahl mehrfach</label>
+		<select id="selectmultiple" name="selectmultiple" size="5" multiple tabindex="5" />
+			<optgroup label="Kategorie 1">
+				<option value="1" selected="selected">Eintrag 1</option>
+				<option value="2">Eintrag 2</option>
+			</optgroup>
+			<optgroup label="Kategorie 2">
+				<option value="3">Eintrag 3</option>
+				<option value="4">Eintrag 4</option>
+				<option value="5">Eintrag 5</option>
+				<option value="6">Eintrag 6</option>
+			</optgroup>
+			<optgroup label="Kategorie 3">
+				<option value="7">Eintrag 7</option>
+				<option value="8">Eintrag 8</option>
+			</optgroup>
+		</select>
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="radio1">Radio</label>
+		<input id="radio1" name="radio" type="radio" value="radio1" tabindex="6" />
+		<input id="radio2" name="radio" type="radio" value="radio2" checked="checked" />
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="checkbox1">Checkbox</label>
+		<input id="checkbox1" name="checkbox" type="checkbox" value="checked1" tabindex="7" />
+		<input id="checkbox2" name="checkbox" type="checkbox" value="checked2" checked="checked" />
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="button">Button</label>
+		<input id="button" name="button" type="button" value="Beschriftung" tabindex="8" />
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<label for="file">Datei</label>
+		<input id="file" name="file" type="file" maxlength="1" accept="image/jpg" tabindex="9" />
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		
+		<input id="submit" name="submit" type="submit" value="submit">
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		<input id="reset" name="reset" type="reset" value="reset">
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+		<input id="image" name="image" type="image" src="fileadmin/templates/graphics/external-link.gif">
+		<br class=".clearer"/>
+		<br class=".clearer"/>
+	</form>
+</pre>

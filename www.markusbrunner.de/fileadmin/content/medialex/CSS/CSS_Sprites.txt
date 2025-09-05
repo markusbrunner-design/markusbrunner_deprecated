@@ -1,0 +1,76 @@
+
+=CSS Sprites=
+
+Info vorab: Besser ist es natürlich immer CSS3 statt Hintergründe zu verwenden, wo es nur geht (vor allem Buttons) -> Verläufe, Runde Ecken - alte Browser haben dann einfach keine runden Ecken und eine Volltonfarbe. Aber nun zu den Sprites.
+
+==Sprite Bild==
+Was beachtet werden muss:
+# Diese Technik geht erst ab IE7 mit Formularelementen! Wenn IE6 unterstützt werden soll, muss hierauf verzichtet werden.
+# PNG Format 24 Bit - transparent - transparente PNGs sind erst ab IE7 möglich! Davor entstehen statt tansparenten Flächen graue Flächen.
+# wiederholbare Grafiken können nicht aufgenommen werden und Inhaltsbilder haben hier auch nichts zu suchen
+# Links, Tabs oder Buttons, die aus zwei Teilen bestehen, müssen wie folgt vorliegen:
+## linker Rand abgetrennt und rechts davon Transparenz oder das Dateiende
+## rechter Rand muss direkt rechts am Dateiende anliegen, da eine Hintergrundbild-Positionierung von rechts in CSS nicht mit Pixel-Abstand möglich ist (nur "hart" rechts oder mit Pixeln von links aus)
+______________
+
+==Sprite CSS==
+Die folgenden Beispiele sind in Firefox 3.6, Google Chrome, Opera, Safari, IE8, IE7 und IE6 getestet worden. In IE7 entstehen bei den inputs links und rechts größere Abstände als in den anderen Browsern. Das muss aber aufgrund der Skalierbarkeit nur beachtet werden, damit dort das Design nicht zerschossen wird (skalierbare Grafik muss lang genug sein, Umbruch durch zu langen Button darf nicht entstehen oder muss verschmerzbar sein).  Im IE6 können bei Formularelementen keine Hintergründe per CSS verschoben werden (es erscheint immer nur Position x=0,y=0 -> Dateianfang) => keine skalierbare Version im IE6 möglich. Um die Abstandthematik des input vom Typ submit (vom Browser vorgegebene Minimalabstände zum linken und rechten Rand)  bei &lt;span&gt;&lt;input/&gt;&lt;/span&gt; noch etwas zu präzisieren: (Opera, Chrome, IE8 -> korrekter Abstand; Firefox, Safari -> etwas mehr Abstand; lt IE8 = noch mehr Abstand).
+
+===CSS Beispiel===
+<pre class="brush: css; toolbar: false;">
+	/* sprite */
+	#fixed-elem,
+	.link-btn,
+	.link-btn span,
+	.submit-btn,
+	.submit-btn input {
+		background: transparent url(/fileadmin/templates/default/images/sprite.png) -40px -40px no-repeat;
+	}
+	/* einfacher Einsatz - feste Breite und Höhe einfach <div id="fixed-elem">Inhalt</div> */
+	#fixed-elem {
+		background-position: -40px -40px !important;
+		width: 980px;
+		height: 118px;
+	}
+	/* link-button <a class="link-btn"><span>Text</span></a> */
+	.link-btn {
+		display: inline-block;
+		background-position: -40px -40px !important;
+		padding: 0 0 0 3px; /* bei 3px Breite des linken Bildes */
+	}
+	.link-btn span {
+		display: inline-block;
+		background-position: right -80px !important;
+		padding: 0 6px 0 3px; /* der linke Abstand ist bereits durch das linke Bild mitbestimmt */
+		text-decoration: none;
+		font-size: 11px;
+		line-height: 16px; /* Höhe des Elements */
+		height: 16px; /* Höhe des Elements */
+	}
+	/* submit-button <span class="submit-btn"><input type="submit" value="Text" /></span>; die eigentlich bessere Lösung vom Markup her bringt leider ungewollte Ränder im Firefox und <IE8: <button type="submit" class="submit-btn"><span>Text</span></button> */
+	.submit-btn {
+		display: inline-block;
+		background-position: -40px -40px !important;
+		padding: 0 0 0 3px; /* bei 3px Breite des linken Bildes */
+	}
+	.submit-btn input {
+		display: inline-block;
+		background-position: right -80px !important;
+		padding: 0 6px 0 3px; /* der linke Abstand ist bereits durch das linke Bild mitbestimmt */
+		text-decoration: none;
+		font-size: 11px;
+		line-height: 16px; /* Höhe des Elements */
+		height: 16px; /* Höhe des Elements */
+		border: none;
+	}
+	/* IE6.css */
+	.submit-btn {
+		background: none !important;
+		padding: 0 !important;
+	}
+	.submit-btn input {
+		background: white !important;
+		color: #666666 !important;
+		border: 1px solid #666666 !important;
+	}
+</pre>

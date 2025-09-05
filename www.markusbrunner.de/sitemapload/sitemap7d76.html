@@ -1,0 +1,43 @@
+<li><a href="news-detail/markusbrunner-designde-relaunch-version-3.html">MarkusBrunner-Design.de Relaunch Version 3</a></li><li><a href="news-detail/mkcd-gt-mkcd-gt-sunday-groove.html">MKCD &amp;gt; MKCD &amp;gt; Sunday Groove</a></li><li><a href="news-detail/mkcd-gt-mkcd-gt-sunset-evening.html">MKCD &amp;gt; MKCD &amp;gt; Sunset Evening</a></li><li><a href="news-detail/typo3camp-stuttgart-2011-t3cs.html">TYPO3Camp Stuttgart 2011 #t3cs</a></li><li><a href="news-detail/west-usa.html">West-USA</a></li>
+<li id="navigationextensionload11">
+<span id="prevextensionload11" class="sitemap-nav-prev" style="cursor:pointer">&lt;&nbsp;vorherige</span>
+&nbsp;&nbsp;
+<span id="nextextensionload11" class="sitemap-nav-next" style="cursor:pointer">n&auml;chste&nbsp;&gt;</span>
+<script type="text/javascript">
+var currentPageextensionload11 = 0;
+var pageTotalextensionload11 = 2;
+var linksextensionload11 = ['sitemapload/sitemap.html?tx_mbpageandextensionsitemap_pi1%5Bpid%5D=11&tx_mbpageandextensionsitemap_pi1%5Bpage%5D=0&tx_mbpageandextensionsitemap_pi1%5Blang%5D=0','sitemapload/sitemap.html?tx_mbpageandextensionsitemap_pi1%5Bpid%5D=11&tx_mbpageandextensionsitemap_pi1%5Bpage%5D=1&tx_mbpageandextensionsitemap_pi1%5Blang%5D=0'];
+var hideNavigation = false;
+if(currentPageextensionload11 == 0) {
+	jQuery('#prevextensionload11').hide();
+	hideNavigation = true;
+}
+if(currentPageextensionload11 >= (pageTotalextensionload11-1)) {
+	if(hideNavigation == true) {
+		jQuery('#navigationextensionload11').hide();
+	} else {
+		jQuery('#nextextensionload11').hide();
+	}
+}
+
+jQuery('#prevextensionload11').click(function(){
+	if(currentPageextensionload11-1 >= 0) {
+		currentPageextensionload11 = currentPageextensionload11-1;
+		jQuery('#extensionload11').html('...wird geladen');
+		jQuery('#extensionload11').load(linksextensionload11[currentPageextensionload11]);
+	} else {
+		jQuery('#extensionload11').load('<p class="error">...beim Laden der Daten ist ein Fehler aufgetreten. </p>');
+	}
+});
+
+jQuery('#nextextensionload11').click(function(){
+	if(currentPageextensionload11+1 <= pageTotalextensionload11) {
+		currentPageextensionload11 = currentPageextensionload11+1;
+		jQuery('#extensionload11').html('...wird geladen');
+		jQuery('#extensionload11').load(linksextensionload11[currentPageextensionload11]);
+	} else {
+		jQuery('#extensionload11').load('<p class="error">...beim Laden der Daten ist ein Fehler aufgetreten. </p>');
+	}
+});
+</script>
+</li>

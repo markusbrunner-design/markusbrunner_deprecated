@@ -1,0 +1,16 @@
+
+=HTML5 Audio=
+
+The audio element accepts a handful of attributes, most notably:
+* autoplay : Immediately plays the file when the page loads.
+* controls : Displays the player on the page.
+* preload : Immediately begins buffering the file. (values = none, auto, metadata)
+* src : The path to the file name. It's a better practice to load the file via the child "source" element instead.
+_____________
+
+<pre class="brush: xml; toolbar: false;">
+	<audio autoplay="autoplay" controls="controls">  
+		<source src="file.ogg" />  
+		<source src="file.mp3" />  
+	</audio>  
+</pre>

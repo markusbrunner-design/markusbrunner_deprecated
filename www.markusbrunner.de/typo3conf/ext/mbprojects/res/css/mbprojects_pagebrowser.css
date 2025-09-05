@@ -1,0 +1,41 @@
+@media screen {
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser {
+		margin: 7px 0 !important;
+		padding: 3px 0 !important;
+		background-color: #ffffee;
+		border-top: 1px dotted #777;
+		border-bottom: 1px dotted #777;
+	}
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li {
+		list-style-type: none !important;
+		list-style-position: inside !important;
+		background: transparent url(img/pagebrowser-item-normal.html) left top no-repeat !important;
+		width: 20px !important;
+		height: 20px !important;
+		margin: 0 0 0 5px !important;
+		padding: 0 !important;
+		float: left !important;
+	}
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li.current {
+		background: transparent url(img/pagebrowser-item-current.html) left top no-repeat !important;
+	}
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a:link,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a:visited,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a:active,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a:hover,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li a:focus,
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li span	{
+		text-decoration: none !important;
+		line-height: 20px !important;
+		font-size: 10px !important;
+		font-weight: bold !important;
+		color: #fff !important;
+		cursor: pointer !important;
+		display: block !important;
+		text-align: center !important;
+	}
+	.tx-mbkdimagelightbox-pi1 ul.pagebrowser li span {
+		cursor: default !important;
+	}
+}

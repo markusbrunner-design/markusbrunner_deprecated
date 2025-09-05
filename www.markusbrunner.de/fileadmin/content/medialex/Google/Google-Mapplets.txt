@@ -1,0 +1,16 @@
+
+=Google Mapplets=
+Was ist es?
+* spezieller Typ eines Google Gadgets (XML-Struktur mit HTML-,JavaScript-Inhalt)
+* wird auf der Map von google ausgeführt, wenn der Benutzer das Mapplet installiert und aktiviert (mom. max. 5 Mapplets gleichzeitig)
+* zum Laden externer Daten in die Google Map
+
+
+Quelle: [http://code.google.com/intl/de/apis/maps/documentation/mapplets/guide.html#Installing|Entwicklung]
+# Developer Mapplet installieren (dazu muss man bei google angemeldet sein) -> Reload ohne Cache für Entw.
+# Mapplet Scratch Pad installieren (s.o.) -> Entwicklungseditor
+# Das Mapplet kann nach Fertigstellung bei Google eingereicht werden und wird bei Gefallen ins Verzeichnis aufgenommen
+
+* &lt;Require feature="sharedmap"/&gt; initiiert das API automatisch für Sie, sodass Sie nie die Javascript-Bibliothek manuell laden oder einen API-Schlüssel eingeben müssen.
+* Mapplet wird innerhalb eines iFrame ausgeführt (befindet sich unter gmodules.com)
+* nur auf einer Whitelist sich befindende HTML-Tags und CSS-Stile sind erlaubt

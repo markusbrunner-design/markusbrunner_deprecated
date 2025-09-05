@@ -1,0 +1,20 @@
+
+=JavaScript auf Flash heraus aufrufen=
+==Funktion aufrufen==
+===flash===
+<pre class="brush: java; toolbar: false;">
+	call_java = ExternalInterface.call('test','666');
+</pre>
+
+===javascript===
+<pre class="brush: jscript; toolbar: false;">
+	function test(val) {
+		alert(val);
+	}
+</pre>
+
+==Statement direkt aufrufen (hier jQuery)==
+===flash (WICHTIG: kein & in der URL verwenden - statt dessen %26)===
+<pre class="brush: java; toolbar: false;">
+	ExternalInterface.call("jQuery('#content').load('http://domain.de/?id=68%26L=0%26type=777')");
+</pre>

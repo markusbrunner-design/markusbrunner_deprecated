@@ -1,0 +1,39 @@
+
+=Animiertes Scrollen mit jQuery=
+Sie klicken auf einen Link und anstatt einfach zum entsprechenden Anker zu springen, wird sanft zum gewünschten Anker gescrollt. Ich sehe diesen Effekt in letzter Zeit immer öfter und war erstaunt, wie einfach er mit jQuery umgesetzt werden kann. Selbst die Erhaltung der „richtigen“ URL (www.url.de#anker) stellt keine Probleme dar. Demo im neuen Fenster
+
+==jQuery Code - normal==
+<pre class="brush: jscript; toolbar: false;">
+	$(document).ready(function() {
+		$('a[href*=#]').bind("click", function(event) {
+			event.preventDefault();
+			var ziel = $(this).attr("href");
+
+			$('html,body').animate({
+				scrollTop: $(ziel).offset().top
+			}, 2000 , function (){location.hash = ziel;});
+	});
+	return false;
+	});
+</pre>
+
+==jQuery Code - Opera-optimiert==
+<pre class="brush: jscript; toolbar: false;">
+	$(document).ready(function() {
+		$('a[href*=#]').bind("click", function(event) {
+			event.preventDefault();
+			var ziel = $(this).attr("href");
+
+					if ($.browser.opera) {
+						var target = 'html';
+					}else{
+						var target = 'html,body';
+					}
+
+			$(target).animate({
+				scrollTop: $(ziel).offset().top
+			}, 2000 , function (){location.hash = ziel;});
+	});
+	return false;
+	});
+</pre>

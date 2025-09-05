@@ -1,0 +1,173 @@
+
+=CSS Anwendungen und Tipps=
+
+==Elemente positionieren==
+[http://www.markusbrunner-design.de/fileadmin/content/dokumente/medialex/CSS_Elemente-positionieren.pdf|Elemente positionieren]
+
+==Druck-Layout (Print-Layout) mit CSS3==
+[http://www.markusbrunner-design.de/fileadmin/content/dokumente/medialex/CSS3-Print-Layout.pdf|CSS3 Print-Layout]
+
+==Wortumbruch==
+Damit lange Wörter auch zwischen drinnen umgebrochen werden können (z.B. lange E-Mail-Adresse):
+<pre class="brush: css; toolbar: false;">
+	word-wrap:break-word;
+</pre>
+
+===Cross-Browser-Word-Wrap===
+<pre class="brush: css; toolbar: false;">
+	.word_wrap
+	{
+		white-space: pre-wrap; /* css-3 */
+		white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+		white-space: -pre-wrap; /* Opera 4-6 */
+		white-space: -o-pre-wrap; /* Opera 7 */
+		word-wrap: break-word; /* Internet Explorer 5.5+ */
+	}
+</pre>
+
+==Blurry (Schatten) Text==
+<pre class="brush: css; toolbar: false;">
+	.blur {
+	   color: rgba(0,0,0,0);
+	   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+	}
+</pre>
+
+==Stitched (gestickt) Rand==
+[http://css-tricks.com/snippets/css/stitched-look/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+CSS-TricksSnippets+%28CSS-Tricks+Snippet+Feed%29|Quelle css-tricks.com]
+<pre class="brush: css; toolbar: false;">
+	.stitched {
+	   padding: 5px 10px;
+	   margin: 10px;
+	   background: #ff0030;
+	   color: #fff;
+	   font-size: 21px;
+	   font-weight: bold;
+	   line-height: 1.3em;
+	   border: 2px dashed #fff;
+	   border-top-left-radius: 3px;
+	   border-bottom-left-radius: 3px 3px;
+	   -moz-border-radius-topleft: 3px;
+	   -webkit-border-top-left-radius: 3px;
+	   border-bottom-right-radius: 3px;
+	   -moz-border-radius-bottomright: 3px;
+	   -webkit-border-bottom-right-radius: 3px;
+	   border-top-right-radius: 3px;
+	   -moz-border-radius-topright: 3px;
+	   -webkit-border-top-right-radius: 3px;
+	   -moz-box-shadow: 0 0 0 4px #ff0030, 2px 1px 4px 4px rgba(10,10,0,.5);
+	   -webkit-box-shadow: 0 0 0 4px #ff0030, 2px 1px 4px 4px rgba(10,10,0,.5);
+	   box-shadow: 0 0 0 4px #ff0030, 2px 1px 6px 4px rgba(10,10,0,.5);
+	   text-shadow: -1px -1px #aa3030;
+	   font-weight: normal;
+	}
+</pre>
+
+==Clearing with .clearfix==
+===HTML===
+<pre class="brush: xml; toolbar: false;">
+	<ul id="wrapper" class="clearfix">
+		<li class="floatleft">...</li>
+		<li class="floatleft">...</li>
+	</ul>
+</pre>
+===CSS===
+<pre class="brush: css; toolbar: false;">
+	.clearfix:after {
+		content: '.';
+		display: block;
+		clear: both;
+		height: 0;
+		visibility: hidden;
+	}
+	<!--[if IE7]>
+	.clearfix {
+		min-height: 1px;
+	}
+	<![endif]-->
+	<!--[if IE6]>
+	.clearfix {
+		height: 1%;
+	}
+	<![endif]-->
+</pre>
+
+==Clearing with overflow:auto==
+Ich bevorzuge immer noch die .clearfix-Variante, aber das ist auch eine bekannte Methode, die allerdings nicht in allen Fällen korrekt funktioniert und von der Eigenschaft her so natürlich nicht gedacht war...
+===HTML===
+<pre class="brush: xml; toolbar: false;">
+	<ul id="wrapper" class="clear">
+		<li class="floatleft">...</li>
+		<li class="floatleft">...</li>
+	</ul>
+</pre>
+===CSS===
+<pre class="brush: css; toolbar: false;">
+	.clear {
+		overflow: auto;
+	}
+</pre>
+===Komplett-HTML-Beispiel===
+<pre class="brush: xml; toolbar: false;">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Clearing-Test</title>
+	
+	<style>
+		.floatleft {
+			width: 33%;
+			float: left;
+		}
+		.red {
+			background-color: red;
+		}
+		.green {
+			background-color: green;
+		}
+		.blue {
+			background-color: blue;
+		}
+		.yellow {
+			background-color: yellow;
+		}
+		.gray {
+			background-color: gray;
+		}
+		.clear {
+			/* lets see, if this will do the trick */
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="clear gray">
+			<div class="floatleft red">
+				LINKS
+			</div>
+			<div class="floatleft green">
+				MITTE
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+			</div>
+			<div class="floatleft blue">
+				RECHTS
+			</div>
+		</div>
+		<div class="footer yellow">
+			FOOTER
+		</div>
+	</div>
+</body>
+</html>
+</pre>

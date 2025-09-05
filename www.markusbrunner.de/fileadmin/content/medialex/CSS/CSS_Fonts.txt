@@ -1,0 +1,25 @@
+
+=CSS Fonts=
+
+Quelle: [http://www.fontsquirrel.com/fontface/generator|Fontsquirrel]
+
+EOT (IE), SVG (Safari,Chrome,Opera), WOFF (Firefox gt 3.5), TTF (Firefox)
+
+<pre class="brush: css; toolbar: false;">
+	/* Referenzierung der Schriftart in den verschiedenen Formaten, die für die Browser notwendig sind */
+	@font-face {
+		font-family: 'TheSansOfficeLFRegular';
+		src: url('/fileadmin/templates/fonts/tsaofl5_-webfont.eot');
+		src: url('/fileadmin/templates/fonts/tsaofl5_-webfont.woff') format('woff'), url('/fileadmin/templates/fonts/tsaofl5_-webfont.svg#webfontApXv43nb') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	/* Einsatz der referenzierten Schriftart */
+	.TheSansOfficeLF {
+		font-weight: normal;
+		font-style: normal;
+		line-height:normal;
+		font-family: 'TheSansOfficeLFRegular', sans-serif;
+		font-size-adjust: 0.5;
+	}
+</pre>

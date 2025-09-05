@@ -1,0 +1,34 @@
+
+=htaccess Zugriffsschutz=
+
+==Global erlauben oder verbieten==
+<pre class="brush: plain; toolbar: false;">
+	# Deny or allow access
+	DENY FROM ALL
+	ALLOW FROM ALL
+</pre>
+
+==Dateitypen vom Aufruf ausschließen==
+<pre class="brush: plain; toolbar: false;"
+	<files *.ts>
+		deny from all
+	</files>
+</pre>
+
+==Passwortschutz für Verzeichnisse==
+
+.htaccess-Datei in den zu schützendem Ordner anlegen.
+<pre class="brush: plain; toolbar: false;">
+	AuthUserFile /absoluter/Pfad/ab/Server-Root/zur/.htpasswd
+	AuthName "Text der im Dialog erscheinen soll"
+	AuthType Basic
+	Require valid-user
+</pre>
+
+.htpasswd-Datei an der unter AuthUserFile angegebenen Stelle anlegen
+<pre class="brush: plain; toolbar: false;">
+	meinLoginName:meinVerschlüsseltesPasswort
+</pre>
+
+Wichtig: Das Passwort muss verschlüsselt angegeben werden, sonst gehts nicht. 
+Das Passwort kann man z.B. mit [http://www.e2.u-net.com/htaccess/make.htm|http://www.e2.u-net.com/htaccess/make.htm] erstellen. 

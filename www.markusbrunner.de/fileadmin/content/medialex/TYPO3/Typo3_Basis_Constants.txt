@@ -1,0 +1,27 @@
+
+=Basis Konstanten überschreiben=
+
+[http://wiki.typo3.org/TypoScript_Constants|Konstanten Optionen]
+
+==Konstanteneditor==
+[http://typo3-blog.net/tutorials/news/typo3-konstanteneditor.html|TypoScript Konstanteneditor]
+<pre class="brush: plain; toolbar: false;">
+	tx_mbbrowserid_pi1 {
+		# cat=plugin.mbbrowserid/config/010; type=options[browserid,blue,green,grey,orange,red]; label=Login-Image
+		sign_in_image=browserid
+
+		# cat=plugin.mbbrowserid/config/011; type=options[true,false]; label=Reload after login
+		reloadPageAfterLogin=true
+
+		# cat=plugin.mbbrowserid/config/012; type=options[true,false]; label=Reload after logout
+		reloadPageAfterLogout=true
+	}
+</pre>
+
+==CSS Styled Content==
+===Image-Border===
+<pre class="brush: plain; toolbar: false;">
+	# set color of border for image / text with image
+	styles.content.imgtext.borderColor = #EEECEC
+	styles.content.imgtext.borderThick = 9 << ohne px
+</pre>

@@ -1,0 +1,23 @@
+
+=PHP Sicherheit=
+
+==Fehlerausgabe anschalten==
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	error_reporting(E_ALL);
+<pre>
+
+==Daten vor Abspeicherung in die Datenbank absichern==
+<pre class="brush: php; toolbar: false;">
+	mysql_real_escape_string();
+	intval(); // (int) $var;
+	floatval(); // (float) $var;
+	doubleval(); // (double) $var;
+</pre>
+
+==Daten vor der Ausgabe vor XSS absichern==
+<pre class="brush: php; toolbar: false; highlight: [1, 2, 3];">
+	htmlspecialchars(); = htmlentities(); // Ersetzt alle HTML-Sonderzeichen durch HTML-Code (&, ", ', <, >)
+    strip_tags(); // Entfernt Tags aus einer Zeichenkette
+    addslashes(); // Entschärft alle im String enthaltenen Hochkommata durch Voranstellen von Backslashes
+	t3lib_div::removeXSS(); // TYPO3-Core Funktion
+</pre>

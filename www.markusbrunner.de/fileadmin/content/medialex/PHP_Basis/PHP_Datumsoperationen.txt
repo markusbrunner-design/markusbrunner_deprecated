@@ -1,0 +1,204 @@
+
+=Datumsoperationen=
+==Datum konvertieren==
+===Standard Datum umwandeln===
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	echo strtotime('2011-01-01'); //1293836400
+</pre>
+===Umwandlungsfunktion===
+<pre class="brush: php; toolbar: false;">
+	/**
+	 * Returns a unix-timestamp out of a given date in the form dmy.
+	 *
+	 * @param date(dmy) $date
+	 * @param bool $isStart true if start (
+	 * @return unix-timestamp
+	 */
+	function getUnixDate($date, $isStart) {
+		// date array
+		$array_date = array();
+		
+		// temp date array with given date
+		$array_temp = explode('.',$date);
+		
+		// fill date array
+		$array_date['d'] = $array_temp[0];
+		$array_date['m'] = $array_temp[1];
+		$array_date['y'] = $array_temp[2];
+
+		// fill hour according to isStart
+		if($isStart) {
+			$array_date['hour'] = 0;
+			$array_date['min']  = 0;
+			$array_date['sec']  = 0;
+		} else {
+			$array_date['hour'] = 24;
+			$array_date['min']  = 0;
+			$array_date['sec']  = 0;
+		}
+
+		// make unix timestamp
+		$unix_date = mktime($array_date['hour'], $array_date['min'], $array_date['sec'], $array_date['m'], $array_date['d'], $array_date['y']);
+
+		return $unix_date;
+	}
+</pre>
+==Aktive Zeitperiode überprüfen; inkl. Feiertagen==
+<pre class="brush: php; toolbar: false;">
+	/**
+	 * Determines if a time-period is active
+	 * @param $time_from 			int seconds of hours * minutes * seconds
+	 * @param $time_to 				int seconds of hours * minutes * seconds
+	 * @param $time_from_saturday 	int seconds of hours * minutes * seconds for Saturday
+	 * @param $time_to_saturday		int seconds of hours * minutes * seconds for Saturday
+	 * @param $time_from_sunday 	int seconds of hours * minutes * seconds for Sunday
+	 * @param $time_to_sunday 		int seconds of hours * minutes * seconds for Sunday
+	 * @param $checkHolidays 		bool checks for holidays if true (default)
+	 * @return bool					true if active, false if out of time-period or holiday (see param $checkHolidays)
+	 */
+	private function _isActive($time_from = 0, $time_to = 86400, $time_from_saturday = 0, $time_to_saturday = 0, $time_from_sunday = 0, $time_to_sunday = 0, $checkHolidays = true) 
+	{
+		// check if current date is a holiday (Holidays of Baden-Württemberg - Germany) - BEGIN
+		if($checkHolidays) {
+			// year
+			$int_year = date('Y');
+			
+			// easter prefill
+			$date_easter = easter_date($int_year);
+			$easterDay = date('j', $date_easter);
+			$easterMonth = date('n', $date_easter);
+			$easterYear = date('Y', $date_easter);
+			
+			// get holidays
+			$arr_generalHoliday = array();
+			$arr_generalHoliday[$int_year.'-01-01'] = 'Neujahr';
+			$arr_generalHoliday[$int_year.'-01-06'] = 'Heilige Drei Koenige';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay-2), $int_year))] = 'Karfreitag';
+			$arr_generalHoliday[date('Y-m-d', easter_date($int_year))] = 'Ostersonntag';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay+1), $int_year))] = 'Ostermontag';
+			$arr_generalHoliday[$int_year.'-05-01'] = 'Tag der Arbeit';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay+39), $int_year))] = 'Christi Himmelfahrt';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay+49), $int_year))] = 'Pfingstsonntag';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay+50), $int_year))] = 'Pfingstmontag';
+			$arr_generalHoliday[date('Y-m-d', mktime(0, 0, 0, $easterMonth, ($easterDay+60), $int_year))] = 'Frohenleichnam';
+			$arr_generalHoliday[$int_year.'-10-03'] = 'Tag der Deutschen Einheit';
+			$arr_generalHoliday[$int_year.'-11-01'] = 'Allerheiligen';
+			$arr_generalHoliday[$int_year.'-12-25'] = '1. Weihnachtsfeiertag';
+			$arr_generalHoliday[$int_year.'-12-26'] = '2. Weihnachtsfeiertag';
+			
+			if(array_key_exists(date('Y-m-d'), $arr_generalHoliday)) { return false; } /*else { echo date('Y-m-d')." ist kein Feiertag"; }*/
+		}
+		// check if current date is a holidy (Holidays of Baden-Württemberg - Germany) - END
+
+		// check if current time is fitting to worktime on working day, saturday and sunday - BEGIN
+		$str_day = date('l');
+		switch($str_day) {
+			case 'Saturday':
+				$time_from = $time_from_saturday;
+				$time_to = $time_to_saturday;
+				break;
+			case 'Sunday':
+				$time_from = $time_from_sunday;
+				$time_to = $time_to_sunday;
+				break;
+		}
+		$int_time = (int) ((date('G') * 3600) + (date('i') * 60) + date('s'));		
+		if($int_time >= $time_from && $int_time <= $time_to) { 
+			//echo "current time is active: ".$int_time;
+			return true; 
+		} else { 
+			//echo "current time is not active: ".$int_time;
+			return false; 
+		}
+		// check if current time is fitting to worktime on working day, saturday and sunday - END		
+		return true;
+	}
+</pre>
+==Feiertage überprüfen==
+<pre class="brush: php; toolbar: false;">
+	/**
+	* AUS DEM NETZ
+	* Ermittle Feiertage, Arbeitstage und Wochenenden von einem Datum
+	*
+	* @param string $datum im Format YYYY-MM-DD
+	* @param string $bundesland
+	* @return string
+	*/
+	function feiertag ($datum,$bundesland='') {
+
+		$datum = explode('-', $datum);
+
+		$datum[1] = str_pad($datum[1], 2, “0?, STR_PAD_LEFT);
+		$datum[2] = str_pad($datum[2], 2, “0?, STR_PAD_LEFT);
+
+		if (!checkdate($datum[1], $datum[2], $datum[0])) return false;
+
+		$datum_arr = getdate(mktime(0,0,0,$datum[1],$datum[2],$datum[0]));
+
+		$easter_d = date('d', easter_date($datum[0]));
+		$easter_m = date('m', easter_date($datum[0]));
+
+		$status = 'Arbeitstag';
+		if ($datum_arr['wday'] == 0 || $datum_arr['wday'] == 6) $status = 'Wochenende';
+		
+		if ($datum[1].$datum[2] == '0101') {
+			return 'Neujahr';
+		} elseif ($datum[1].$datum[2] == '0106') {
+			return 'Heilige Drei Könige';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d-2,$datum[0]))) {
+			return 'Karfreitag';
+		} elseif ($datum[1].$datum[2] == $easter_m.$easter_d) {
+			return 'Ostersonntag';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d+1,$datum[0]))) {
+			return 'Ostermontag';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d+39,$datum[0]))) {
+			return 'Christi Himmelfahrt';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d+49,$datum[0]))) {
+			return 'Pfingstsonntag';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d+50,$datum[0]))) {
+			return 'Pfingstmontag';
+		} elseif ($datum[1].$datum[2] == date('md',mktime(0,0,0,$easter_m,$easter_d+60,$datum[0]))) {
+			return 'Fronleichnam';
+		} elseif ($datum[1].$datum[2] == '0501') {
+			return 'Erster Mai';
+		} elseif ($datum[1].$datum[2] == '0504' && $bundesland == 'ooe') {
+			return 'Florian';
+		} elseif ($datum[1].$datum[2] == '0815') {
+			return 'Mariä Himmelfahrt';
+		} elseif ($datum[1].$datum[2] == '0924' && $bundesland == 's') {
+			return 'Rupertitag';
+		} elseif ($datum[1].$datum[2] == '1010' && $bundesland == 'k') {
+			return 'Tag der Volksabstimmung';
+		} elseif ($datum[1].$datum[2] == '1026') {
+			return 'Nationalfeiertag';
+		} elseif ($datum[1].$datum[2] == '1101') {
+			return 'Allerheiligen';
+		} elseif ($datum[1].$datum[2] == '1111' && $bundesland == 'b') {
+			return 'Martini';
+		} elseif ($datum[1].$datum[2] == '1115' && ($bundesland == 'noe' || $bundesland == 'w')) {
+			return 'Leopoldi';
+		} elseif ($datum[1].$datum[2] == '1208') {
+			return 'Mariä Empfängnis';
+		} elseif ($datum[1].$datum[2] == '1224') {
+			return 'Heiliger Abend';
+		} elseif ($datum[1].$datum[2] == '1225') {
+			return 'Christtag';
+		} elseif ($datum[1].$datum[2] == '1226') {
+			return 'Stefanitag';
+		} else {
+			return $status;
+		}
+	}
+	for ($monat = 1; $monat <= 12; $monat++) {
+		echo '<strong>'.$monat.'</strong><br>';
+		for ($tag = 1; $tag <= 31; $tag++) {
+			$tmp = feiertag('2009-'.$monat.'-'.$tag,'noe');
+			if ($tmp == 'Arbeitstag' || $tmp == 'Wochenende') {
+				echo $tag.'.'.$monat.': '.$tmp.'<br>';
+			} else {
+				echo $tag.'.'.$monat.': <strong>'.$tmp.'</strong><br>';
+			}
+		}
+		echo '<br><br>';
+	}
+</pre>

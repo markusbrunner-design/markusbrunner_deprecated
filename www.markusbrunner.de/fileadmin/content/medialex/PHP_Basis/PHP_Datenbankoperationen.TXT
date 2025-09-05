@@ -1,0 +1,17 @@
+
+=Datenbankoperationen=
+
+==Datenbankverbindung aufbauen==
+<pre class="brush: php; toolbar: false; highlight: [1,2,3,4];">
+	$dbcon = mysql_connect('datenbank.hosting.net', 'user', 'password') or die('No server connection!');
+	$db = 'my_database';
+	mysql_select_db($db, $dbcon) or die('No database selected!');
+	mysql_query('SET NAMES utf8');
+	$query = 'SELECT * FROM my_table';
+	mysql_query($query) or die(mysql_error().'<br />'.$query);
+</pre>
+
+==Datenbankhost abfragen==
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	mysql_get_host_info();
+</pre>

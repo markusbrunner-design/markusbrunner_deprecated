@@ -1,0 +1,63 @@
+
+=CSS Formular Validierung=
+Quelle: [http://www.alistapart.com/articles/forward-thinking-form-validation/|Alistapart Artikel]
+
+==CSS3 Pseudo-Classes==
+<pre class="brush: css; toolbar: false;">
+	- valid
+	- invalid
+	- required
+	- optional
+	- in-range [in conjunction with the min and max attributes]
+	- out-of-range [in conjunction with the min and max attributes]
+	- read-only
+	- read-write
+</pre>
+
+==Invalid/Valid-Styling==
+<pre class="brush: css; toolbar: false;">
+	input:focus:required:invalid {
+	  background: pink url(ico_validation.png) 379px 3px no-repeat;
+	}
+	input:required:valid {
+	  background-color: #fff;
+	  background-position: 379px -61px;
+	}
+</pre>
+
+==Hints==
+<pre class="brush: xml; toolbar: false;">
+	<input id="password" type="password"  />
+	<p class="validation01">
+	  <span class="invalid">Minimum 8 characters, one number, one uppercase 
+	letter and one lowercase letter</span>
+	  <span class="valid">Your password meets our requirements, thank you.
+	</span>
+	</p>
+</pre>
+<pre class="brush: css; toolbar: false;">
+	.validation01 {
+	  background: red;
+	  color: #fff;
+	  display: none;
+	  font-size: 12px;
+	  padding: 3px;
+	  position: absolute;
+	  right: -110px;
+	  text-align: center;
+	  top: 0;
+	  width: 100px;
+	}
+	input:focus + .validation01 {
+	  display: block;
+	}
+	input:focus:required:valid + .validation01 {
+	  background: green;
+	}
+	input:focus:required:valid + .validation01 .invalid {
+	  display: none;
+	}
+	input:focus:required:invalid + .validation01 .valid {
+	  display: none;
+	}
+</pre>

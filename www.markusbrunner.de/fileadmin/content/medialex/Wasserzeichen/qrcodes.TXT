@@ -1,0 +1,13 @@
+
+=QR-Codes=
+
+==Quellen==
+[http://de.wikipedia.org/wiki/QR-Code|QR-Code - Wikipedia-Beitrag]
+[http://qrcode.kaywa.com/|QR-Codes erzeugen]
+[http://reader.kaywa.com/|QR-Codes mit dem Handy auslesen]
+[http://zxing.org/w/decode.jspx|QR-Codes online auslesen]
+
+==QR-Code für markusbrunner-design.de==
+<pre class="brush: xml; toolbar: false;">
+	<img src="http://qrcode.kaywa.com/img.php?s=8&d=http%3A%2F%2Fwww.markusbrunner-design.de" alt="qrcode"  />
+</pre>

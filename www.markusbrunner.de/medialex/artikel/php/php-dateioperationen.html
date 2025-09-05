@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+
+<!-- Mirrored from www.markusbrunner.de/medialex/artikel/php/php-dateioperationen.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Oct 2018 06:49:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 
+	Website von Markus Brunner
+		Dipl.-Medieninformatiker (BA)
+		Bachelor of Arts
+		Fachmann für Projektmanagement (GPM)
+		Certified TYPO3 Integrator
+		http://www.markusbrunner-design.de/
+
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2012 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at http://typo3.org/
+-->
+
+<base  />
+
+
+<meta name="generator" content="TYPO3 4.6 CMS" />
+<meta name="page-topic" content="../../../index.html" />
+<meta name="author" content="../../../index.html" />
+<meta name="publisher" content="../../../index.html" />
+<meta name="robots" content="index,follow,noodp,noydir" />
+<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=1, minimum-scale=0.2, maximum-scale=1.5" />
+
+<link rel="shortcut icon" href="../../../fileadmin/templates/default/images/favicon.ico" />
+	<link rel="bookmark icon" href="../../../fileadmin/templates/default/images/favicon.ico" />
+	<link rel="alternate" type="application/rss+xml" title="MarkusBrunner-Design.de - News: RSS 2.0" href="http://www.markusbrunner-design.de/markus-brunner-design-news.xml" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="apple-touch-icon" href="../../../fileadmin/templates/default/images/favicon.png" />
+
+
+
+			<title>MediaLex PHP Dateioperationen</title>
+	<meta name="abstract" content="MediaLex PHP Dateioperationen" />
+	<meta name="description" content="MediaLex PHP Dateioperationen" />
+	<meta name="keywords" content="MediaLex, PHP Dateioperationen" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../typo3temp/scriptmerger/uncompressed/head-aea0ec9e9f4c6bc02ac4e8e5831b7034.merged.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../../typo3temp/scriptmerger/uncompressed/head-f04df768a19955f7d37478e9e817e058.merged.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="../../../typo3temp/scriptmerger/uncompressed/head-ef0d2f4285f849b4dc2bcfbdd4bd7a00.merged.css" />
+
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/javascript_8d985c2683-8d985c268348b0a5e7510e3e50191b3c.min.js"></script>
+	<script type="text/javascript" src="../../../fileadmin/templates/default/js/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/default-423206d4649d58d631b7d6ea23398094.min.js"></script>
+	<script type="text/javascript" src="../../../typo3conf/ext/mbwikifileknowledgebase/res/js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/shBrushPhp-0a52933147cb95e4860a81c6c86863f8.min.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/inDocument-0bbe534e8d28f12f42152fe19f2c0f7f.min.js"></script>
+</head>
+<body>
+
+
+	<div id="website">
+		<div id="header">
+			<div id="headerpic"><img src="../../../typo3temp/pics/e562c94916.jpg" width="960" height="192" alt="MarkusBrunner-Design.de - MediaLex" /></div>
+		</div>
+
+		<div id="header_menu_wrapper" class="clearfix">
+			<div id="header_menu" class="clearfix">
+				<div id="logo"><span class="logowrapchar">[</span><a href="../../../index.html" title="MarkusBrunner.de">MarkusBrunner.de</a><span class="logowrapchar">]</span></div>
+				<div id="nav" class="clearfix"><ul class="menu"><li class="active"><a href="../../../medialex.html" onfocus="blurLink(this);">MediaLex</a></li><li><a href="../../../projekte.html" onfocus="blurLink(this);">Projekte</a></li><li><a href="../../../fotografie.html" onfocus="blurLink(this);">Fotografie</a></li><li><a href="../../../audiografie.html" onfocus="blurLink(this);">Audiografie</a></li><li><a href="../../../videografie.html" onfocus="blurLink(this);">Videografie</a></li><li><a href="../../../news.html" onfocus="blurLink(this);">News</a></li></ul></div>
+			</div>
+		</div>
+		
+		<div id="content_area_wrapper" class="clearfix">
+			<div id="content_area" class="clearfix">
+				<div id="content_menu">
+					<div id="sub_nav"></div>
+					<div id="sub_nav_content"><div class="extension_navigation">
+	<ul class="wfkb_navigation">
+		<li class="wfkb_navigation_parents">
+			<div><a href="../../../medialex.html">Alle Kategorien</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../audiografie.html">Audio</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../betriebssysteme.html">Betriebssysteme</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../css.html">CSS</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../design.html">Design</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../fotografie.html">Fotografie</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../google.html">Google</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../htaccess.html">htaccess</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../html.html">HTML</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../javascript.html">JavaScript</a></div>
+		</li>
+				<li class="wfkb_navigation_parents active">
+			<div><a href="../../php.html">PHP</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../regex.html">RegEx</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../robots.html">Robots</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../seo.html">SEO</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../server.html">Server</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../smarty.html">Smarty</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../videografie.html">SQL</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../typo3.html">TYPO3</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../wasserzeichen.html">Wasserzeichen</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../wiki-syntax.html">Wiki-Syntax</a></div>
+		</li>
+			</ul>
+</div></div>
+					
+				</div>
+				<div id="content_wrapper">
+					<div id="content"><!--TYPO3SEARCH_begin--><div class="prevnextpaging">
+<a class="next" href="php-datenbankoperationen.html"><span>PHP Datenbankoperationen</span></a>
+</div><form id="wfkb_search_form" action="http://www.markusbrunner.de/medialex.html" method="get">
+	<input id="wfkb_search" name="tx_mbwikifileknowledgebase_pi1[searchword]" type="text" title="" value="" />
+	<div id="suggestOutput" style="display:none"></div>
+	<input type="submit" class="noscript" value="Suchen" />
+</form>
+<script src="../../../typo3conf/ext/mbwikifileknowledgebase/res/js/jquery_suggest_v1.1.0.min.js"></script>
+<script>
+
+/* <![CDATA[ */
+	(function($) {
+		$(document).ready(function(){
+			jQuery('#wfkb_search').addInputSuggest({
+				url:'/index.php?eID=wfkb_ajax_search&searchword=',
+				suggestBoxSelector:'#suggestOutput',
+				onClick:function(elem){
+					jQuery('#wfkb_search_form').submit();
+				}
+			});
+		});
+	})(jQuery);
+/* ]]> */
+
+</script><h1>PHP Dateioperationen</h1><h2>Dateityp f&uuml;r die Ausgabe bestimmen</h2><h3>Dateityp CSV</h3><pre class="brush: php; toolbar: false; highlight: 1;">
+	header('Content-Type: text/csv; charset=UTF-8');
+	echo $myCSV;
+	exit;
+</pre><h3>Dateityp XML</h3><pre class="brush: php; toolbar: false; highlight: 1;">
+	header('Content-Type: text/xml; charset=UTF-8');
+	echo $myXML;
+	exit;
+</pre><h2>Dateityp PDF ausgeben</h2><pre class="brush: php; toolbar: false; highlight: [2, 4, 6];">
+	// PDF Datei ausgeben
+	header('Content-type: application/pdf');
+	// wird downloaded.pdf benannt
+	header('Content-Disposition: attachment; filename=&quot;downloaded.pdf&quot;');
+	// originale Datei hei&amp;szlig;t
+	readfile('original.pdf');
+</pre><h2>Dateien einlesen</h2><h3>Dateien nach Muster suchen</h3><pre class="brush: php; toolbar: false; highlight: 2;">
+	//find
+	$files = glob('../images/a*.jpg');
+
+	// applies the function to each array element
+	$files = array_map('realpath',$files);
+
+	print_r($files);
+	/* output looks like:
+	Array
+	(
+		[0] =&gt; C:\wamp\www\images\apple.jpg
+		[1] =&gt; C:\wamp\www\images\art.jpg
+	)
+	*/
+</pre><h3>Einlesen Standard</h3><pre class="brush: php; toolbar: false;">
+	//read
+	$handle = fopen ('./typo3conf/localconf.php', 'r');
+	while (!feof($handle)) {
+		$buffer = fgets($handle, 4096);
+		echo $buffer;
+	}
+	fclose ($handle);
+</pre><h3>Einlesen einfach</h3><pre class="brush: php; toolbar: false; highlight: 3;">
+	//read
+	$file = PATH_site.'fileadmin/content/myfile.txt';
+	$fileContent = @file_get_contents($file);
+</pre><h3>Einlesen einer URL</h3><pre class="brush: php; toolbar: false; highlight: 4;">
+	$service = &quot;http://mydomain.de/?var=&quot;.$var;
+	if ($var.length != 0 ){
+		//Remote-Auslesung der oben definierten Service-Adresse
+		$result = @file($service);
+	}
+</pre><h2>Dateien schreiben</h2><h3>Schreiben Standard</h3><pre class="brush: php; toolbar: false;">
+	//write
+	$handle1 = fopen(&quot;headlines.txt&quot;, &quot;w+&quot;);
+	fwrite($handle1, $headline.&quot;\n&quot;.$handle0);
+	fclose($handle1);
+</pre><h3>Schreiben einfach</h3><pre class="brush: php; toolbar: false; highlight: 4;">
+	// write
+	$file = PATH_site.'fileadmin/content/myfile.txt';
+	$content = 'content';
+	@file_put_contents($file,$content,LOCK_EX);
+</pre><h2>Datei kopieren und l&ouml;schen</h2><h3>Datei kopieren</h3><pre class="brush: php; toolbar: false; highlight: 1;">
+	copy($fileSource,$fileDestination);
+</pre><h3>Datei l&ouml;schen</h3><pre class="brush: php; toolbar: false; highlight: 1;">
+	unlink($file);
+</pre><h3>Beispiel f&uuml;r den Upload von Daten</h3><pre class="brush: php; toolbar: false; highlight: [4, 7];">
+	// copies an jpg (internal or external url) to internal imgPath, deletes the original image if internal
+	if(!empty($image)) {
+		// copies the image
+		copy($image,$this-&gt;imgPath.md5($image).'.jpg');
+		// deletes the source image (if internal)
+		if($isInternal) {
+			unlink($image);
+		}
+	}
+</pre><h2>Dateien hochladen</h2><h3>Upload-Funktion</h3><pre class="brush: php; toolbar: false;">
+	/**
+	 * @author	Markus Brunner
+	 * @date		20110209
+	 * @comment	Uploads a file
+	 *
+	 * @html		&lt;form action=&quot;url.php&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;&lt;input id=&quot;uploaded_file&quot; name=&quot;uploaded_file&quot; type=&quot;file&quot; /&gt;&lt;input type=&quot;submit&quot; value=&quot;upload file&quot; /&gt;&lt;/form&gt;
+	 * @php			$uploadResult = uploadFormFiles(array('uploaded_file'));
+	 *
+	 * @param		array $uploadNames					Array of all Form &gt; input[type=&quot;file&quot;] &gt; name e.g. array('uploaded_file')
+	 * @param		boolean	$uploadIfExists			Boolean: upload file although file with same name already exists in upload folder if true; default: false
+	 * @param		boolean $replaceExisting		Boolean: deletes existing files with same filename if true; default: false
+	 * @param		int	$allowedFileSize				Int of Maximum of Filesize in Byte e.g. 524288 for 0,5 MB
+	 * @param		String $uploadPath					String of Upload Path relative to this file e.g. 'upload/' - folder must exist!
+	 * @param		array $allowedFileTypes			Array of all allowed file types e.g. for standard images array('image/jpeg','image/jpg','image/gif','image/png')
+	 * @return	array												Array of uploaded files
+	 *						name
+	 *						type
+	 *						tmp_name
+	 *						error
+	 *						errorType
+	 *						size
+	 *						uploadFileName
+	 */
+	function uploadFormFiles(Array $uploadNames, $uploadIfExists = false, $replaceExisting = false, $uploadPath = 'upload/', $allowedFileSize = 524288, Array $allowedFileTypes = array('image/jpeg','image/jpg','image/gif','image/png')) {
+		
+		$result = array();
+
+		foreach($uploadNames AS $uploadName) {
+
+			# upload config
+			$uploadFile = $_FILES[$uploadName];
+			$uploadFile['uploadFileName'] = $uploadPath.basename($uploadFile['name']);
+			$uploadFileExists = file_exists($uploadFile['uploadFileName']);
+
+			# delete file if $uploadIfExists &amp;&amp; $replaceExisting
+			if($uploadFileExists &amp;&amp; $uploadIfExists &amp;&amp; $replaceExisting) {
+				if(!(unlink($uploadFile['uploadFileName']))) {
+					$uploadFile['error'] = 1;
+					$uploadFile['errorType'] = 'error deleting file';
+				}
+			}
+			# upload file with timestamp suffix if $uploadIfExists &amp;&amp; NOT $replaceExisting
+			else if($uploadFileExists &amp;&amp; $uploadIfExists &amp;&amp; !$replaceExisting) {
+				$temp_uploadFileName = substr($uploadFile['name'], 0, strrpos($uploadFile['name'], '.')).'_'.date('U').substr($uploadFile['name'], strrpos($uploadFile['name'], '.'), strlen($uploadFile['name']));
+				$uploadFile['name'] = $temp_uploadFileName;
+				$uploadFile['uploadFileName'] = $uploadPath.basename($temp_uploadFileName);
+			}
+
+			# check if file exists
+			if(empty($uploadFile['error']) &amp;&amp; !$uploadIfExists &amp;&amp; $uploadFileExists) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'file exists already';
+			}
+
+			# check upload size
+			if(empty($uploadFile['error']) &amp;&amp; $uploadFile['size'] &gt; (int) $allowedFileSize) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'file too big';
+			}
+
+			# check upload file type
+			if(empty($uploadFile['error']) &amp;&amp; !(in_array($uploadFile['type'], $allowedFileTypes))) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'wrong file type';
+			}
+
+			# upload file
+			if(empty($uploadFile['error']) &amp;&amp; !(move_uploaded_file($uploadFile['tmp_name'], $uploadFile['uploadFileName']))) {
+				$uploadFile['error'] = 1;
+				$uploadFile['errorType'] = 'upload crashed';
+			}
+
+			$result[] = $uploadFile;
+		}
+
+		return $result;
+	}
+</pre><h2>Dateien konvertieren</h2><h3>PHP Native Methode</h3>geht leider nicht immer!
+<pre class="brush: php; toolbar: false; highlight: 1;">
+	string mb_detect_encoding  (  string $str  [,  mixed $encoding_list = mb_detect_order()  [,  bool $strict = false  ]] )
+</pre>
+==P=HP Funktion zur &Uuml;berpr&uuml;fung, ob UTF-8; NO 1===
+<pre class="brush: php; toolbar: false;">
+	// Returns true if $string is valid UTF-8 and false otherwise.
+	function is_utf8($string) {
+	   
+		// From http://w3.org/International/questions/qa-forms-utf-8.html
+		return preg_match('%^(?:
+			  <a href="../../../x09/x0A/x0D/x20-/x7E" class="knowledgebase-link">\x09\x0A\x0D\x20-\x7E</a>            # ASCII
+			| <a href="../../../xC2-/xDF" class="knowledgebase-link">\xC2-\xDF</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>             # non-overlong 2-byte
+			|  \xE0<a href="../../../xA0-/xBF" class="knowledgebase-link">\xA0-\xBF</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>        # excluding overlongs
+			| <a href="../../../xE1-/xEC/xEE/xEF" class="knowledgebase-link">\xE1-\xEC\xEE\xEF</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>{2}  # straight 3-byte
+			|  \xED<a href="../../../x80-/x9F" class="knowledgebase-link">\x80-\x9F</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>        # excluding surrogates
+			|  \xF0<a href="../../../x90-/xBF" class="knowledgebase-link">\x90-\xBF</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>{2}     # planes 1-3
+			| <a href="../../../xF1-/xF3" class="knowledgebase-link">\xF1-\xF3</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>{3}          # planes 4-15
+			|  \xF4<a href="../../../x80-/x8F" class="knowledgebase-link">\x80-\x8F</a><a href="../../../x80-/xBF" class="knowledgebase-link">\x80-\xBF</a>{2}     # plane 16
+		)*$%xs', $string);
+	   
+	} // function is_utf8
+</pre><h3>PHP Funktion zur &Uuml;berpr&uuml;fung, ob UTF-8; NO 2</h3><pre class="brush: php; toolbar: false;">
+	function is_utf8($str) {
+		$c=0; $b=0;
+		$bits=0;
+		$len=strlen($str);
+		for($i=0; $i&lt;$len; $i++){
+			$c=ord($str[$i]);
+			if($c &gt; 128){
+				if(($c &gt;= 254)) return false;
+				elseif($c &gt;= 252) $bits=6;
+				elseif($c &gt;= 248) $bits=5;
+				elseif($c &gt;= 240) $bits=4;
+				elseif($c &gt;= 224) $bits=3;
+				elseif($c &gt;= 192) $bits=2;
+				else return false;
+				if(($i+$bits) &gt; $len) return false;
+				while($bits &gt; 1){
+					$i++;
+					$b=ord($str[$i]);
+					if($b &lt; 128 || $b &gt; 191) return false;
+					$bits--;
+				}
+			}
+		}
+		return true;
+	}
+</pre><h3>PHP Funktion zur &Uuml;berpr&uuml;fung, ob UTF-8; NO 3</h3><pre class="brush: php; toolbar: false;">
+	//    utf8 encoding validation developed based on Wikipedia entry at:
+	//    http://en.wikipedia.org/wiki/UTF-8
+	//
+	//    Implemented as a recursive descent parser based on a simple state machine
+	//    copyright 2005 Maarten Meijer
+	//
+	//    This cries out for a C-implementation to be included in PHP core
+	function valid_1byte($char) {
+		if(!is_int($char)) return false;
+		return ($char &amp; 0x80) == 0x00;
+	}
+	function valid_2byte($char) {
+		if(!is_int($char)) return false;
+		return ($char &amp; 0xE0) == 0xC0;
+	}
+	function valid_3byte($char) {
+		if(!is_int($char)) return false;
+		return ($char &amp; 0xF0) == 0xE0;
+	}
+	function valid_4byte($char) {
+		if(!is_int($char)) return false;
+		return ($char &amp; 0xF8) == 0xF0;
+	}
+	function valid_nextbyte($char) {
+		if(!is_int($char)) return false;
+		return ($char &amp; 0xC0) == 0x80;
+	}
+	function valid_utf8($string) {
+		$len = strlen($string);
+		$i = 0;   
+		while( $i &lt; $len ) {
+			$char = ord(substr($string, $i++, 1));
+			if(valid_1byte($char)) {    // continue
+				continue;
+			} else if(valid_2byte($char)) { // check 1 byte
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} else if(valid_3byte($char)) { // check 2 bytes
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} else if(valid_4byte($char)) { // check 3 bytes
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+				if(!valid_nextbyte(ord(substr($string, $i++, 1))))
+					return false;
+			} // goto next char
+		}
+		return true; // done
+	}
+</pre><h3>PHP Funktion zur &Uuml;berpr&uuml;fung, ob ISO Latin 1</h3><pre class="brush: php; toolbar: false;">
+	function IsLatin1($str) {
+		return (preg_match("/^<a href="http://x00-//xFF" class="knowledgebase-link">\\x00-\\xFF</a>*$/u", $str) === 1);
+	}
+</pre><h2>Verzeichnisse erstellen</h2><pre class="brush: php; toolbar: false;">
+	/**
+	 * make a dir
+	 *
+	 * @param string $dirName
+	 * @param int    $rights=0777
+	 */
+	function mkdir_r($dirName, $rights=0777)
+	{
+		$dirs = explode('/', $dirName);
+		$dir='';
+		foreach ($dirs as $part) 
+		{
+			$dir.=$part.'/';
+			if (!is_dir($dir) &amp;&amp; strlen($dir)&gt;0)
+				mkdir($dir, $rights);
+		}
+	}
+</pre>
+
+<div class="divider">
+	<hr />
+</div>
+<p class="wfkb_file_download">
+	<a class="download" href="../../../fileadmin/content/medialex/PHP_Basis/PHP_Dateioperationen.txt" target="_blank">Wiki-Datei des Artikels herunterladen</a>
+</p>
+<!--TYPO3SEARCH_end--></div>
+					
+				</div>
+			</div>
+		</div>
+	  
+		<div id="footer" class="clearfix">
+			<div id="footer_menu" class="clearfix"><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../impressum.html">Informationen</a></div></li><li class="subElements"><ul><li><div><a href="../../../kontakt.html">Kontakt</a></div></li><li><div><a href="../../../impressum.html">Impressum</a></div></li><li><div><a href="../../../datenschutz.html">Datenschutz</a></div></li><li><div class="last"><a href="../../../sitemap.html">Sitemap</a></div></li></ul></li></ul><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../ueber-mich/steckbrief.html">Über mich</a></div></li><li class="subElements"><ul><li><div><a href="../../../ueber-mich/steckbrief.html">Steckbrief</a></div></li><li><div><a href="../../../ueber-mich/studium.html">Studium</a></div></li><li><div><a href="../../../ueber-mich/lebenslauf.html">Lebenslauf</a></div></li><li><div class="last"><a href="../../../ueber-mich/nachweise.html">Nachweise</a></div></li></ul></li></ul><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../programmierung.html">Programmierung</a></div></li><li class="subElements"><ul><li><div><a href="../../../programmierung/t3-extensions.html">T3-Extensions</a></div></li><li><div class="last"><a href="../../../programmierung/js-plugins.html">JS-Plugins</a></div></li></ul></li></ul><div id="profiles">
+	<p class="footerHeading">Profile</p>
+	<a target="_blank" href="http://www.xing.com/profile/Markus_Brunner23">
+		<img src="../../../fileadmin/content/profile/xing.gif" alt="XING" />
+	</a>
+	<a target="_blank" href="http://twitter.com/MarkusBrunnerDe">
+    <img src="../../../fileadmin/content/profile/twitter.gif" alt="TWITTER" />
+  </a>
+</div><div id="profiles">
+  <p class="footerHeading">Profile</p>
+  <a target="_blank" href="http://www.photocase.de/de/user.asp?u=97299">
+    <img src="../../../fileadmin/content/profile/photocase.gif" alt="PHOTOCASE" />
+  </a>
+  <a target="_blank" href="https://www.mygall.net/markusbrunner">
+    <img src="../../../fileadmin/content/profile/mygall.gif" alt="MYGALL" />
+  </a>
+  <a target="_blank" href="http://500px.com/heavyhawk123">
+    <img src="../../../fileadmin/content/profile/500px.gif" alt="500px" />
+  </a>
+</div><div id="validation">
+  <p class="footerHeading">Validierung</p>
+  <a target="_blank" href="http://validator.w3.org/check?uri=referer">
+    <img src="../../../fileadmin/content/profile/w3c_html5.png" alt="HTML5" />
+  </a>
+  <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img src="../../../fileadmin/content/profile/w3c_css.png" alt="CSS3" />
+  </a>
+</div><script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="../../../../w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="../../../../s.sharethis.com/loader.js"></script>
+<script type="text/javascript">stLight.options({publisher: "c7746ef8-01f0-4fc5-b055-3a3da65dac2e", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script type="text/javascript">
+var options={ "publisher": "c7746ef8-01f0-4fc5-b055-3a3da65dac2e", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "pinterest", "email", "sharethis"]}};
+var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+</script></div></div>
+		</div>
+	</div>
+	<div id="tools"><!-- browser-update.org integration // begin -->
+<script type="text/javascript"> 
+var $buoop = {vs:{i:9,f:25,o:17,s:6,n:9}}; 
+$buoop.ol = window.onload; 
+window.onload=function(){ 
+ try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+ var e = document.createElement("script"); 
+ e.setAttribute("type", "text/javascript"); 
+ e.setAttribute("src", "../../../../browser-update.org/update.js"); 
+ document.body.appendChild(e); 
+} 
+</script>
+<!-- browser-update.org integration // end --></div><div id="tracking"><script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20259609-1']);
+  _gaq.push (['_gat._anonymizeIp']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></div>
+
+
+
+
+</body>
+
+<!-- Mirrored from www.markusbrunner.de/medialex/artikel/php/php-dateioperationen.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Oct 2018 06:49:57 GMT -->
+</html>

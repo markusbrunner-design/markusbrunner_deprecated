@@ -1,0 +1,80 @@
+
+=htaccess redirect=
+==Redirect in TYPO3==
+Hier brauch man keine htaccess, auch wenn das von der Performance her natürlich besser ist. In Typo3 kann man statt dessen auch einfach einen Redirect in den Domain Recors machen
+# Domain Record für www.domain.de
+# Domain Record für domain.de mit Redirect zu http://www.domain.de
+_____________________
+
+==Standard Redirect==
+<pre class="brush: plain; toolbar: false;">
+	Redirect /dir/page.html  http://www.domain.de/newpage.html
+	# oder:
+	RewriteRule ^dir/page.html http://www.domain.de/newpage.html [r=301,L]
+</pre>
+
+==Redirect from http://domain.de to http://www.domain.de==
+<pre class="brush: plain; toolbar: false;">
+	# necessary: RewriteEngine on
+	RewriteCond %{HTTP_HOST} ^domain.de [NC]
+	RewriteRule ^(.*?)$ http://www.domain.de/$1 [L,R=301]
+	#RewriteRule ^(.*)$ http://www.domain.de/$1 [L,R=301]
+</pre>
+
+==Switch for https-secured sites (non-real-url)==
+<pre class="brush: plain; toolbar: false;">
+	# necessary: RewriteEngine on
+	#***HTTPS***********************************************
+	RewriteCond %{QUERY_STRING} (^|&)id=31(&|$)
+	RewriteRule ^index\.php$ https://www.deal.de/index.php$1 [R=301,L]
+</pre>
+
+==HTTP==
+<pre class="brush: plain; toolbar: false;">
+	RewriteCond %{QUERY_STRING} !(^|&)id=31(&|$)
+	RewriteRule ^index\.php$ http://www.deal.de/index.php$1 [R=301,L]
+</pre>
+
+==Rewrite everything to index.php==
+<pre class="brush: plain; toolbar: false;">
+	# necessary: RewriteEngine on
+	RewriteRule .* index.php
+	# shut down rewriting for folders with images, css etc. 
+	# where it should not be rewritten and disable Apache Directory Listing
+	RewriteEngine off
+	Options -Indexes
+</pre>
+Quelle: [http://t3n.de/news/seo-tutorial-standard-domain-festlegen-maximale-271954/|t3n Artikel]
+
+==Redirect zu www==
+<pre class="brush: plain; toolbar: false;">
+	RewriteEngine On
+	RewriteBase /
+	RewriteCond %{HTTP_HOST} !^www.domain.com$ [NC]
+	RewriteRule ^(.*)$ http://www.domain.com/$1 [L,R=301]
+</pre>
+
+==Redirect zu no-www==
+<pre class="brush: plain; toolbar: false;">
+	RewriteEngine On
+	RewriteBase /
+	RewriteCond %{HTTP_HOST} !^domain.com$ [NC]
+	RewriteRule ^(.*)$ http://domain.com/$1 [L,R=301]
+</pre>
+
+==Rewrite everything to domain, rewrite admin/ to admin/index.php and every other page to /index.php==
+<pre class="brush: plain; toolbar: false;">
+	RewriteEngine On
+	RewriteCond %{HTTP_HOST} !^www\.skaikonfigurator\.com|^skaikonfigurator\.hornschuch\.php5\.stg\.netformic\.net
+	RewriteRule ^(.*)$ http://www.skaikonfigurator.com/ [R=301,L]
+	RewriteBase /
+	RewriteRule ^admin$ - [L]
+	RewriteRule ^admin/.*$ - [L]
+	#RewriteRule ^(typo3|typo3temp|typo3conf|t3lib|tslib|fileadmin|uploads|cgi-bin|showpic\.php)/ - [L]
+	RewriteRule ^admin$ admin/index.php [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-df
+	RewriteCond %{REQUEST_FILENAME} !-l
+	RewriteCond %{HTTP_HOST} ^([-A-Za-z0-9]+\.)*([-A-Za-z0-9]+)\.[-A-Za-z0-9]+$
+	RewriteRule .* index.php?url=%1
+</pre>

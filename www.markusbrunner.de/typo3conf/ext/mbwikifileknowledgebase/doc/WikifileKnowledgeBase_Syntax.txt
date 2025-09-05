@@ -1,0 +1,132 @@
+=Headings level 1=
+==level 2==
+===level 3===
+====level 4====
+=====level 5=====
+======level 6======
+text
+
+=unordered list=
+text - must be wrapped with text!
+* one
+* two
+* three
+** three point one
+** three point two
+text - implementation needs to be improved (also indent)
+
+=ordered list=
+text - must be wrapped with text!
+# one
+# two<br />spanning more lines<br />doesn't break numbering
+# three
+## three point one
+## three point two
+text - implementation needs to be improved (also indent)
+
+=highlighting=
+''italic'' text 
+'''bold''' text 
+'''''bold & italic''''' text 
+
+=Links=
+External link with different label: [http://mediawiki.org|MediaWiki] or [http://mediawiki.org MediaWiki]
+
+=Images=
+... text text text  text text text  text text text  text text text 
+ text text text  text text text  text text text  text text text 
+[[/fileadmin/content/bilder/medialex_logo.jpg|caption|display:block]]
+ text text text  text text text  text text text  text text text 
+ text text text  text text text  text text text  text text text 
+[[/fileadmin/content/bilder/medialex_logo.jpg|caption|display:inline]]
+ text text text  text text text  text text text  text text text 
+ text text text  text text text  text text text text text text ...
+
+=Table=
+{| Testtabelle
+|----- 
+!Eins 
+!Zwei 
+!Drei
+|----- 
+|Bread 
+|Pie 
+|Butter
+|----- 
+|Bread2 
+|Pie2 
+|Butter2
+|----- 
+|Bread3 
+|Pie3
+|Butter3
+|}
+
+=code - pre blocks=
+<pre>nomarkup with pre</pre>
+text in between '''markups are not ignored'''
+<pre>this way, all markups are '''ignored'''</pre>
+and a special code block for plain
+<pre class="brush: plain; toolbar: false;">
+text in plain
+text in plain
+</pre>
+and a special code block for html (xml)
+<pre class="brush: xml; toolbar: false;">
+<h6>
+	<!-- test -->
+	<span>
+		<em>test</em>
+	</span>
+</h6>
+</pre>
+and a special code block for xml
+<pre class="brush: xml; toolbar: false;">
+<article>
+	<heading>test</heading>
+</article>
+</pre>
+and a special code block for css
+<pre class="brush: css; toolbar: false;">
+	/* emphasized */
+	em {
+		font-style: italic;
+		word-wrap: text-break;
+	}
+</pre>
+and a special code block for sql
+<pre class="brush: sql; toolbar: false;">
+	# SQL DB-Statement
+	SELECT * 
+	FROM mytable 
+	WHERE id IN(1,2,3);
+</pre>
+and a special code block for js
+<pre class="brush: jscript; toolbar: false;">
+/* redirect to google */
+if(goToGoogle) {
+	window.location = www.google.de;
+}
+</pre>
+and a special code block for php
+<pre class="brush: php; toolbar: false;">
+	/* explode variable */
+	$text = 'text,text,text';
+	$exploded = explode(',',$text);
+</pre>
+and a special code block for java
+<pre class="brush: java; toolbar: false;">
+	/* main function */
+	public static void main(String[] args) { 
+		... 
+	}
+</pre>
+
+=comment=
+<!-- This is a comment -->
+
+=Hinweis=
+list
+* Format Unix oder Windows (wird konvertiert zu Unix) mit UTF-8 ohne BOM oder Ansi (wird konvertiert zu UTF-8)
+* lists must be wrapped with text
+list

@@ -1,0 +1,43 @@
+
+=PHP Mails=
+
+==Mail versenden==
+<pre class="brush: php; toolbar: false; highlight: 9;">
+	/**
+	 * Sends an E-Mail.
+	 *
+	 * @param string $to
+	 * @param string $message
+	 * @param string $subject
+	 * @return bool (true if sent)
+	 */
+	function sendNewMail($to, $from, $message, $subject) {
+		$mail_header  = "MIME-Version: 1.0\n";
+		$mail_header  = "From: <$from>\n";
+		$mail_header .= "Content-Type: text/plain; charset=utf-8\n";
+
+		// Send the message
+		if ($mail = mail($to, $subject, $message , $mail_header)) {
+			return true;
+		}
+		else {
+			return false;
+		}	
+	}
+</pre>
+
+==E-Mail-Adresse mittels eines regülären Ausdrucks auf Korrektheit des Formats überprüfen==
+<pre class="brush: php; toolbar: false; highlight: 6;">
+	/**
+	 * Checks if E-Mail has a right format.
+	 * @param string $str
+	 * @return bool
+	 */
+	function checkMail($str) {
+		if(eregi("^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,4})$", $str)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</pre>

@@ -1,0 +1,25 @@
+
+=Cron Tabs=
+==Syntax Cron in einer crontab (Cron Tabelle)==
+<pre class="brush: plain; toolbar: false;">
+	# m h dom mon dow command
+	# Minute Stunde Tag Monat Wochentag Kommando
+</pre>
+
+Info: Asynchrone Aufträge übernimmt Daemon anacron
+
+Dieser Cron Job erstellt automatisch ein gepacktes Archiv des Ordner public_html. Die Variable $datum ist dabei Teil des Dateinamens und ganz praktisch, wenn wir später ein Backup aus einem ganz bestimmten Zeitraum suchen.
+<pre class="brush: plain; toolbar: false;">
+	0 22 * * 0 datum=`date -I` ; tar -zcf backup_$datum.tgz ./public_html
+</pre>
+
+Aber wir wollen nicht nur unsere Dateien auf dem Webspace sichern, sondern auch die MySQL-Datenbank:
+<pre class="brush: plain; toolbar: false;">
+	0 4 * * * date=`date -I` ; mysqldump -u DBUSER -p DBPASS -all-databases | gzip >/irgendwo/mysqlbackup_$date.sql.gz
+</pre>
+Es wird jeden Tag morgens um vier Uhr ein Backup aller Datenbanken des Users DBUSER mit dem Passwort DBPASS angelegt. Auch hier wird alles in ein Archiv gepackt, das wieder das Datum als Teil des Dateinamens enthält.
+
+Script zu bestimmter Zeit laufen lassen:
+<pre class="brush: plain; toolbar: false;">
+	0 0 * * 1 /pfad/zum/skript.php
+</pre>

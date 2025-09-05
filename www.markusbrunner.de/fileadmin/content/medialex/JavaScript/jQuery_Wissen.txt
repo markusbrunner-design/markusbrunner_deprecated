@@ -1,0 +1,64 @@
+
+=jQuery Wissen=
+
+==Wrapper==
+<pre class="brush: jscript; toolbar: false;">
+	(function($) {
+		$(document).ready(function(){
+			/* do something with jQuery */
+		});
+	})(jQuery);
+</pre>
+
+==Events==
+Events haben auch eigene Funktionen:
+<pre class="brush: jscript; toolbar: false;">
+	jQuery('.click_me').click(function(){
+		alert('clicked');
+	});
+</pre>
+
+mittels bind können events an Elemente gebunden werden:
+<pre class="brush: jscript; toolbar: false;">
+	jQuery('.click_me').bind('click',function(){
+		alert('clicked');
+	});
+</pre>
+
+mittels live wird gewährleistet, dass auch Elemente, die per AJAX nachgeladen werden die gleiche Funktionalität bekommen:
+<pre class="brush: jscript; toolbar: false;">
+	jQuery('.click_me').live('click',function(){
+		alert('clicked');
+	});
+</pre>
+
+eigen definierte Funktionen, die der Benutzer per Optionenübergabe befüllen kann (siehe $.fn.addInputSuggest)
+<pre class="brush: jscript; toolbar: false;">
+	if (typeof options.onSelect === 'function') {
+		options.onSelect(elem);
+	}
+</pre>
+
+oder so, wenn mehrere benötigt werden (siehe $.fn.addInputSuggest):
+<pre class="brush: jscript; toolbar: false;">
+	callFunction(options.onSelect,this);
+	callFunction(options.onClick,this);
+	function callFunction(myFunc,elem) {
+		if (typeof myFunc === 'function') {
+			myFunc(elem);
+		}
+	}
+</pre>
+
+==Broken Image Handling==
+<pre class="brush: jscript; toolbar: false;">
+	// Replace source
+	$('img').error(function(){
+			$(this).attr('src', 'missing.png');
+	});
+
+	// Or, hide them
+	$("img").error(function(){
+			$(this).hide();
+	});
+</pre>

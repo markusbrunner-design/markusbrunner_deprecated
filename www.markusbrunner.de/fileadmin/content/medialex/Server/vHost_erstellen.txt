@@ -1,0 +1,20 @@
+
+=vHosts (virtuelle Hosts) unter Windows erstellen=
+
+1. in WINDOWS/system32/drivers/etc/hosts die URL eintragen, die auf 127.0.0.1 zeigen sollen:
+<pre class="brush: plain; toolbar: false;">
+	127.0.0.1		mywebsite.loc
+	127.0.0.1		www.mywebsite.loc
+</pre>
+
+2. die vHosts im Apache eintragen (xampp\apache\conf\extra\httpd-vhosts.conf) und danach neu starten:
+<pre class="brush: plain; toolbar: false;">
+	NameVirtualHost *:80
+	<VirtualHost *:80>
+		ServerAdmin postmaster@localhost
+		DocumentRoot C:\xampp\htdocs\mywebsite
+		ServerName mywebsite.loc
+	</VirtualHost>
+</pre>
+
+3. Bei einer TYPO3 Multi-Site noch die Real-URL-Conf und Domaineinträge anpassen (ansonsten lediglich die base-URL) und danach den Cache löschen

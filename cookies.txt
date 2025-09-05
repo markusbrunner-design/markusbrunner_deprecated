@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.browser-update.org	TRUE	/	FALSE	1999999999	__cfduid	d1c7802afa6f18954c610fb096a1d93df1538132442
+www.markusbrunner.de	TRUE	/	FALSE	1999999999	PHPSESSID	492cd427a94e7106aec07088c72802bb
+www.markusbrunner.de	TRUE	/	FALSE	1999999999	fe_typo_user	093d39d9dc3a97e0559b76a72f97f9ea
+

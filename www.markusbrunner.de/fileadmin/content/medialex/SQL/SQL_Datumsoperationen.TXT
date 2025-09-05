@@ -1,0 +1,26 @@
+
+=SQL Datumsoperationen=
+==Aus Unixtimestamp==
+===SQL===
+<pre class="brush: sql; toolbar: false;">
+	FROM_UNIXTIME()
+	FROM_UNIXTIME(date,'%d.%m.%Y') AS date
+</pre>
+[http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_from-unixtime|MySQL Referenz]
+
+==Nach Unixtimestamp==
+===SQL===
+<pre class="brush: sql; toolbar: false;">
+	UNIX_TIMESTAMP(TIMESTAMP()) #funktioniert nur bei Standardformatierung 2009-12-31, daher Umstrickung mit PHP notwendig
+</pre>
+<pre class="brush: php; toolbar: false;">
+	// bei deutschem Standard: 31.12.2009
+	$date_exploded = explode('.',$date);
+	$select = 'SELECT UNIX_TIMESTAMP(TIMESTAMP("'.$date_exploded[2].'-'.$date_exploded[1].'-'.$date_exploded[0].'"));';
+</pre>
+===PHP===
+<pre class="brush: php; toolbar: false;">
+	gmmktime()
+	$date_exploded = explode('.',$date);
+	$select = 'SELECT * FROM table WHERE time > "'.gmmktime(0,0,0,intval($date_exploded[1]),intval($date_exploded[0]),intval($date_exploded[2])).'";';
+</pre>

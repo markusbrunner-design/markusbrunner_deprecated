@@ -1,0 +1,299 @@
+
+=CSS3 Techniken=
+Quellen: [http://css3generator.com/|CSS3 Generator], [http://perishablepress.com/press/2010/01/11/css3-progressive-enhancement-smart-design/|Perishablepress]
+
+==Image-Reflections==
+<pre class="brush: css; toolbar: false;">
+	img {
+	  -webkit-box-reflect: below 4px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(white));
+	  -webkit-border-radius: 3px;
+	   border-radius: 3px;
+	   border: 3px solid #666;
+	}
+</pre>
+
+==Multiple Backgrounds==
+<pre class="brush: css; toolbar: false;">
+	.multiple-bg-images {
+		background: url(http://domain.tld/path/layer-01.png) no-repeat 0 0;
+		background: url(http://domain.tld/path/layer-01.png) no-repeat 0 0,
+				url(http://domain.tld/path/layer-02.png) no-repeat 0 0,
+				url(http://domain.tld/path/layer-03.png) no-repeat 0 0,
+				url(http://domain.tld/path/layer-04.png) no-repeat 0 0;
+	}
+</pre>
+	
+==Background Sizing==
+<pre class="brush: css; toolbar: false;">
+	.background-size { 
+		background-image: url(http://domain.tld/path/bg.png);
+		-webkit-background-size: 50% 50%; /* Safari  */
+		-khtml-background-size: 50% 50%;  /* Konquer */
+		-moz-background-size: 50% 50%;    /* Firefox */
+		-o-background-size: 50% 50%;      /* Opera   */
+		background-size: 50% 50%;	  /* CSS3    */
+	}
+</pre>
+
+==Border-Image==
+===CSS Beispiel 1===
+<pre class="brush: css; toolbar: false;">
+	-moz-border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 repeat; 
+	-webkit-border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 repeat; 
+	border-image: url(http://www.w3.org/TR/css3-background/border.png) 27 round stretch;
+	border: double orange 1em;
+</pre>
+===CSS Beispiel 2===
+<pre class="brush: css; toolbar: false;">
+	.border-image {
+		border: solid transparent;
+		border-width: 10px 20px 10px 20px;
+
+		-webkit-border-image: url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+		-khtml-border-image:  url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+		-icab-border-image:   url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+		-moz-border-image:    url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+		-o-border-image:      url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+		border-image:         url("http://domain.tld/path/border.png") 10 20 10 20 round round;
+	}
+</pre>
+
+==Border-Radius==
+<pre class="brush: css; toolbar: false;">
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+</pre>
+
+{| Border-CSS3-Browser-Equivalents
+!CSS3 (Opera browser)
+!Mozilla equivalent
+!WebKit equivalent
+|-----
+|border-top-right-radius
+|-moz-border-radius-topright
+|-webkit-border-top-right-radius
+|-----
+|border-bottom-right-radius
+|-moz-border-radius-bottomright
+|-webkit-border-bottom-right-radius
+|-----
+|border-bottom-left-radius
+|-moz-border-radius-bottomleft
+|-webkit-border-bottom-left-radius
+|-----
+|border-top-left-radius
+|-moz-border-radius-topleft
+|-webkit-border-top-left-radius
+|-----
+|border-radius
+|-moz-border-radius
+|-webkit-border-radius
+|}
+
+==Box Shadow==
+===CSS3===
+<pre class="brush: css; toolbar: false;">
+	-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+</pre>
+===IE Nachimplementierung mit filter===
+<pre class="brush: css; toolbar: false;">
+	.ie-shadow {
+		-ms-filter: /* IE8+ */
+			"progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=0, strength=7) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#777777, direction=90, strength=10) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#777777, direction=180, strength=10) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=270, strength=7)";
+		filter: /* IE<8 */
+			 progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=0, strength=7) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#777777, direction=90, strength=10) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#777777, direction=180, strength=10) 
+			 progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=270, strength=7);
+	}
+	.ie-drop-shadow {
+		-ms-filter: /* IE8+ */
+			"filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=7, OffY=7, Color=#555, Positive=true)";
+		filter: /* IE<8 */
+			filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=7, OffY=7, Color=#555, Positive=true);
+	}
+</pre>
+
+==Text Shadow==
+===CSS3===
+<pre class="brush: css; toolbar: false;">
+	text-shadow: 2px 3px 10px #3b3a3b;
+	filter: dropshadow(color=#3b3a3b, offx=2, offy=3);
+</pre>
+===IE Nachimplementierung mit filter===
+<pre class="brush: css; toolbar: false;">
+	.ie-text-shadow {
+		-ms-filter: /* IE8+ */
+			"progid:DXImageTransform.Microsoft.MotionBlur(strength=1, direction=220) 
+			 progid:DXImageTransform.Microsoft.Blur(pixelradius=3) 
+			 dropshadow(color=#777777, offx=1, offy=1)";
+		filter: /* IE<8 */
+			 progid:DXImageTransform.Microsoft.MotionBlur(strength=1, direction=220) 
+			 progid:DXImageTransform.Microsoft.Blur(pixelradius=3) 
+			 dropshadow(color=#777777, offx=1, offy=1);
+	}
+</pre>
+
+==RGBA-Farben==
+A = Opacity
+<pre class="brush: css; toolbar: false;">
+	background-color: rgba(125, 150, 175, 0.5);
+</pre>
+
+==Verläufe, Gradients==
+<pre class="brush: css; toolbar: false;">
+	.color-gradients {
+		background-image: -moz-linear-gradient(top, #FFFF00, #FF0000);
+		background-image: -webkit-gradient(linear, top, bottom, color-stop(0.00, #FFFF00), color-stop(1.00, #FF0000));
+	}
+	.color-gradients {
+		background: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0.0, rgba(255, 255, 255, .0)),
+			color-stop(0.15, rgba(255, 255, 255, .7)),
+			color-stop(1.0, rgba(255, 255, 255, .7))
+		);
+		background: -moz-linear-gradient(
+			center top,
+			rgba(255, 255, 255, .0) 0%,
+			rgba(255, 255, 255, .7) 15%,
+			rgba(255, 255, 255, .7) 100%
+		)
+	}
+	.color-gradients {
+		background-image: -moz-radial-gradient(top left, circle farthest-corner, #FFFF00, #FF0000);
+		background-image: -webkit-gradient(radial, top, bottom, color-stop(0.00, #FFFF00), color-stop(1.00, #FF0000));
+	}
+</pre>
+
+==Opacity==
+<pre class="brush: css; toolbar: false;">
+	.opacity {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)";
+		filter: alpha(opacity=70); /* internet explorer */
+		-khtml-opacity: 0.7;      /* khtml, old safari */
+		-moz-opacity: 0.7;       /* mozilla, netscape */
+		opacity: 0.7;           /* fx, safari, opera */
+	}
+</pre>
+
+==Font-Family==
+<pre class="brush: css; toolbar: false;">
+	@font-face {
+		font-family: 'Arial';
+		src: url('Arial.eot');
+		src: local('?'),
+		url('Arial.woff') format('woff'),
+		url('Arial.ttf') format('truetype');
+	}
+</pre>
+
+==Multiple Columns==
+<pre class="brush: css; toolbar: false;">
+	-moz-column-count: 3;
+	-moz-column-gap: 7px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 7px;
+	column-count: 3;
+	column-gap: 7px;
+</pre>
+
+==rotate elements==
+<pre class="brush: css; toolbar: false;">
+	.rotate-this {
+		behavior: url(-ms-transform.htc);
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+</pre>
+
+==Box Resize==
+<pre class="brush: css; toolbar: false;">
+	resize: both;
+	overflow: auto;
+	min-width: 50px; /*suggest a mid-width & min-height*/
+	min-height 50px; 
+</pre>
+
+==Border Box==
+<pre class="brush: css; toolbar: false;">
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-icab-box-sizing: border-box;
+	-khtml-box-sizing: border-box; 
+</pre>
+
+==Content Box==
+<pre class="brush: css; toolbar: false;">
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-ms-box-sizing: content-box;
+	-o-box-sizing: content-box;
+	-icab-box-sizing: content-box;
+	-khtml-box-sizing: content-box; 
+</pre>
+
+==Outline==
+<pre class="brush: css; toolbar: false;">
+	outline: 3px dotted #8a198a;
+	outline-offset: 10px; /*Delete if you don't want an offset*/
+</pre>
+
+==:nth-child differierende Formatierung für Tabellenzeilen etc==
+<pre class="brush: css; toolbar: false;">
+	/*gerade:*/
+	table tr:nth-child(even) {
+	  background-color: gray;
+	}
+	/*ungerade:*/
+	table tr:nth-child(odd) {
+	  background-color: gray;
+	}
+	/*drittes Element:*/
+	table tr:nth-child(3) {
+	  background-color: gray;
+	}
+	/*jedes dritte Element:*/
+	table tr:nth-child(3n) {
+	  background-color: gray;
+	}
+	/*die ersten drei Elemente:*/
+	table tr:nth-child(-n+3) {
+	  background-color: gray;
+	}
+</pre>
+
+==weitere Pseudo-Selektoren==
+<pre class="brush: css; toolbar: false;">
+	:nth-last-child -> von hinten her gezählt
+	:nth-of-type -> das soundsovielte div etc.
+	:nth-last-of-type -> s.o. anders herum
+	:first-child
+	:last-child
+	:first-of-type
+	:last-of-type
+	:only-child -> das einzige Kind des Elements
+	:only-of-type -> der einzige Nachfolger mit dem Typ
+	:empty -> keine Kinder
+	:enabled -> enabled user interface elements
+	:disabled -> disabled user interface elements
+	:checked -> checked user interface elements
+	::selection -> currently selected element by user [::-moz-selection]
+	:not(selector) -> negation von Selektor
+	E ~ F -> Matches any F element that is preceded by an E element
+</pre>

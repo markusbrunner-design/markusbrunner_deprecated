@@ -1,0 +1,216 @@
+
+=Basis-Typoscript=
+
+==Kommentare==
+<pre class="brush: plain; toolbar: false;">
+	# und // = einzeilige Kommentare 
+	/*
+		Content 
+	*/ = mehrzeilige Kommentare (*/ muss in einer neuen Zeile stehen, da ansonsten der Code nicht korrekt ausgeführt wird!)
+</pre>
+
+==Operatoren==
+<pre class="brush: plain; toolbar: false;">
+	=	Zuweisen
+	:=	Modifikation (mittels einer Funktion)
+	>	Löschen
+	<	Kopieren
+	=<	Referenz
+</pre>
+
+==Konstanten==
+In dem Feld Constants kann man Konstanten definieren, die man im gesamten Typoscript abgreifen kann:
+===Constants:===
+<pre class="brush: plain; toolbar: false;">
+	pfadbestandteil1.pfadbestandteil2 = wert
+</pre>
+===Setup:===
+<pre class="brush: plain; toolbar: false;">
+	objekt.eigenschaft = {$pfadbestandteil1.pfadbestandteil2}
+</pre>
+
+Eine weitere Möglichkeit Konstanten einzuführen, die jedoch in Content-Elementen bestimmte Marker ersetzen ist folgende:
+===1. im Typoscript-Setup:===
+<pre class="brush: plain; toolbar: false;">
+	constants.NAME = mein neuer Name
+	constants.MAIL = meinemail@mail.de
+</pre>
+===2. in einem beliebigen Content Element===
+<pre class="brush: plain; toolbar: false;">
+	Name: ###NAME###
+	Mail: ###MAIL###
+</pre>
+
+==Typoscript-Templates inkludieren==
+<pre class="brush: plain; toolbar: false;">
+	<INCLUDE_TYPOSCRIPT: source="FILE: fileadmin/templates/default/ts/main.3ts">
+</pre>
+
+==Zusammenfassen mit spitzen Klammern==
+<pre class="brush: plain; toolbar: false;">
+	objekt = TYP
+	objekt {
+		eigenschaft1 = wert
+		eigenschaft2 = wert
+		eigenschaft2 {
+			untereigenschaft1 = wert
+			untereigenschaft2 = wert
+		}
+	}
+</pre>
+ACHTUNG: In durch {} zusammengefassten Bereichen (übersichtlicher) dürfen sich leider keine Includes und Conditions befinden!
+
+==Conditions==
+<pre class="brush: plain; toolbar: false;">
+	# Mit Conditions kann man eine gewisse Dynamik im Typoscript-Code erreichen. Nur wenn die Bedingung eintritt, wird ein bestimmter Code ausgeführt. Die Conditions beginnen mit [Anweisung = Wert] und enden immer mit [global] alternativ [end]. Mittels [else] kann man noch Ausschlussanweisungen bestimmen. Mittels den logischen Operatoren &&, AND, ||, OR kann man Anweisungen verknüpfen.
+	[useragent = *MSIE 7*] || [useragent = *MSIE 6*]
+		Anweisungen für IE7 und IE6
+	[else]	
+		Anweisungen für alle anderen Browser
+	[global]
+	[globalVar = TSFE:id = 64]
+		Anweisungen für Seite mit Id 64
+	[global]
+
+	Get-Var:
+	[globalVar = GP:L = 1]
+
+	Constant:
+	[globalVar = LIT:1 = {$TRACKING}]
+</pre>
+
+==Mehrzeilige Wertzuweisungen mit runden Klammern==
+<pre class="brush: plain; toolbar: false;">
+	# Mit den Klammern () kann man mehrzeilige Wertzuweisungen erzeugen:
+	lib.text = TEXT
+	lib.text.value (
+		Hier ist mein Text.
+		Und der geht weiter.
+		Und noch weiter.
+	)
+</pre>
+
+==Alternativen mit Slashes==
+<pre class="brush: plain; toolbar: false;">
+	# Mit // kann man Alternativen zuweisen:
+	page.headerData.10.field = subtitle // title // navtitle
+</pre>
+
+==Wraps mit der Pipe==
+<pre class="brush: plain; toolbar: false;">
+	# Mit dem Wrapzeichen kann man Inhalt mit Etwas umschließen:
+	lib.text = TEXT
+	lib.text.value = umschlossener Inhalt
+	lib.text.wrap = <div>|</div>
+</pre>
+
+==verlinkte Bilder==
+<pre class="brush: plain; toolbar: false;">
+	lib.image = IMAGE
+	lib.image {
+		file = fileadmin/templates/graphics/image.jpg
+		wrap = <span class="image">|</span>
+		imageLinkWrap = 1 {
+		imageLinkWrap {
+			enable = 1
+			typolink {
+			  parameter = 1
+			  additionalParams = &L=1
+			}
+	  }
+	}
+</pre>
+
+==Link auf Druck-Version in eigenem Fenster==
+<pre class="brush: plain; toolbar: false;">
+	lib.pageprinter = IMAGE
+	lib.pageprinter {
+		file = fileadmin/templates/graphics/print.gif
+		imageLinkWrap = 1
+		imageLinkWrap {
+			enable = 1
+			typolink {
+				parameter.data = page:uid
+				parameter.wrap = |,98 760x600
+				addQueryString = 1
+				additionalParams = &print=1&no_cache=1
+				JSwindow_params = status=0,menubar=0,scrollbars=1,location=0,toolbar=0
+			}
+		}
+	}
+</pre>
+
+==Platzhalter für Sprachausgaben==
+<pre class="brush: plain; toolbar: false;">
+	# Mit dem Typ LLL ist es möglich sprachspezifische Inhalt aus Sprachdateien (z.B. von Extensions) auszulesen:
+	LLL:EXT:[dateipfad]:[labelkey] also z.B.: LLL:EXT:tt_news/locallang.xml:pi_title
+</pre>
+Mittels 
+<pre class="brush: plain; toolbar: false;">
+	plugin.extensionkey {
+		_LOCAL_LANG {
+			de {
+				back = zurück
+			}
+		}
+	}
+</pre>
+ist es möglich die Sprachwerte der Locallang von allen Extensions zu überschreiben. Austauschen muss man natürlich den Pluginnamen, die gewünschte Sprache, sowie die Key Value Werte dieses Beispiels. Sinnvoll ist dies auch für die Update-Fähigkeit, da bei einem Extension-Update die Sprachdateien überschrieben werden, aber deren TS-Konfiguration nicht.
+
+==Absolute Pfade erzeugen (Newsletter etc.)==
+<pre class="brush: plain; toolbar: false;">
+	# http://www.typo3.net/tsref/functions/htmlparser/
+	# für alles:
+	page.stdWrap.HTMLparser=1
+	page.stdWrap.HTMLparser.keepNonMatchedTags=1
+	page.stdWrap.HTMLparser.tags.img.fixAttrib.src.prefixRelPathWith=http://deine-domain.com/
+	page.stdWrap.HTMLparser.tags.a.fixAttrib.href.prefixRelPathWith=http://deine-domain.com/
+	[
+		# nur für bestimmten Marker:
+		page.10.marks.CONTENT.stdWrap.HTMLparser.tags.a.fixAttrib.href.prefixRelPathWith=http://deine-domain/
+		# oder (funktioniert nicht mit REAL URL!): 
+		config.absRefPrefix = http://www.domain.de/
+	]
+
+==Entities==
+zum Beispiel auf einen Text (stdWrap-Funktionalität):
+<pre class="brush: plain; toolbar: false;">
+	stdWrap.HTMLparser.htmlSpecialChars = -1
+</pre>
+
+==Navigationen==
+Extra-Klasse, falls Menüpunkt Unterpunkte hat:
+<pre class="brush: plain; toolbar: false;">
+	IFSUB = 1     
+	IFSUB.wrapItemAndSub = <li class="ifsub">|</li>
+	ACTIFSUB = 1
+	IFSUB.wrapItemAndSub = <li class="actifsub">|</li>
+</pre>
+
+==PHP-Scripte einbinden==
+<pre class="brush: plain; toolbar: false;">
+	lib.tracking = PHP_SCRIPT
+	lib.tracking.file = fileadmin/scripts/script.php
+	# Varibalen im Typoscript übergeben
+	lib.tracking.varInt = 123
+	lib.tracking.varStr = text
+	# Variablen im PHP auslesen: $conf['varInt'], $conf['varStr']
+</pre>
+
+==Canonical-Tag==
+<pre class="brush: plain; toolbar: false;">
+	## Canonical-Tag ##
+	# Constants
+	URL_HTTP_LIVE = http://www.domain.com/
+	URL_HTTP_LIVE_COPY = http://www.domain.info/
+	## Setup ##
+    lib.canonicalTag = TEXT
+    lib.canonicalTag {
+      typolink.parameter.data = TSFE:id
+      typolink.returnLast = url
+      wrap = <link rel="canonical" href="{$URL_HTTP_LIVE}/|" />
+    }
+    [globalString = IENV:TYPO3_SITE_URL={$URL_HTTP_LIVE_COPY}]
+      page.headerData.951 < lib.canonicalTag
+    [global]
+</pre>

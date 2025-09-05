@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+
+<!-- Mirrored from www.markusbrunner.de/medialex/artikel/smarty/smarty-template-engine.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Oct 2018 06:49:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 
+	Website von Markus Brunner
+		Dipl.-Medieninformatiker (BA)
+		Bachelor of Arts
+		Fachmann für Projektmanagement (GPM)
+		Certified TYPO3 Integrator
+		http://www.markusbrunner-design.de/
+
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2012 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at http://typo3.org/
+-->
+
+<base  />
+
+
+<meta name="generator" content="TYPO3 4.6 CMS" />
+<meta name="page-topic" content="../../../index.html" />
+<meta name="author" content="../../../index.html" />
+<meta name="publisher" content="../../../index.html" />
+<meta name="robots" content="index,follow,noodp,noydir" />
+<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=1, minimum-scale=0.2, maximum-scale=1.5" />
+
+<link rel="shortcut icon" href="../../../fileadmin/templates/default/images/favicon.ico" />
+	<link rel="bookmark icon" href="../../../fileadmin/templates/default/images/favicon.ico" />
+	<link rel="alternate" type="application/rss+xml" title="MarkusBrunner-Design.de - News: RSS 2.0" href="http://www.markusbrunner-design.de/markus-brunner-design-news.xml" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="apple-touch-icon" href="../../../fileadmin/templates/default/images/favicon.png" />
+
+
+
+			<title>MediaLex Smarty Template Engine</title>
+	<meta name="abstract" content="MediaLex Smarty Template Engine" />
+	<meta name="description" content="MediaLex Smarty Template Engine" />
+	<meta name="keywords" content="MediaLex, Smarty Template Engine" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../typo3temp/scriptmerger/uncompressed/head-aea0ec9e9f4c6bc02ac4e8e5831b7034.merged.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../../typo3temp/scriptmerger/uncompressed/head-f04df768a19955f7d37478e9e817e058.merged.css" />
+	<link rel="stylesheet" type="text/css" media="print" href="../../../typo3temp/scriptmerger/uncompressed/head-ef0d2f4285f849b4dc2bcfbdd4bd7a00.merged.css" />
+
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/javascript_8d985c2683-8d985c268348b0a5e7510e3e50191b3c.min.js"></script>
+	<script type="text/javascript" src="../../../fileadmin/templates/default/js/jquery-1.5.2.min.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/default-423206d4649d58d631b7d6ea23398094.min.js"></script>
+	<script type="text/javascript" src="../../../typo3conf/ext/mbwikifileknowledgebase/res/js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/shBrushPlain-87fdca14e9886310a4e4b3ceb429c7f8.min.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/shBrushPhp-0a52933147cb95e4860a81c6c86863f8.min.js"></script>
+	<script type="text/javascript" src="../../../typo3temp/scriptmerger/uncompressed/inDocument-0bbe534e8d28f12f42152fe19f2c0f7f.min.js"></script>
+</head>
+<body>
+
+
+	<div id="website">
+		<div id="header">
+			<div id="headerpic"><img src="../../../typo3temp/pics/e562c94916.jpg" width="960" height="192" alt="MarkusBrunner-Design.de - MediaLex" /></div>
+		</div>
+
+		<div id="header_menu_wrapper" class="clearfix">
+			<div id="header_menu" class="clearfix">
+				<div id="logo"><span class="logowrapchar">[</span><a href="../../../index.html" title="MarkusBrunner.de">MarkusBrunner.de</a><span class="logowrapchar">]</span></div>
+				<div id="nav" class="clearfix"><ul class="menu"><li class="active"><a href="../../../medialex.html" onfocus="blurLink(this);">MediaLex</a></li><li><a href="../../../projekte.html" onfocus="blurLink(this);">Projekte</a></li><li><a href="../../../fotografie.html" onfocus="blurLink(this);">Fotografie</a></li><li><a href="../../../audiografie.html" onfocus="blurLink(this);">Audiografie</a></li><li><a href="../../../videografie.html" onfocus="blurLink(this);">Videografie</a></li><li><a href="../../../news.html" onfocus="blurLink(this);">News</a></li></ul></div>
+			</div>
+		</div>
+		
+		<div id="content_area_wrapper" class="clearfix">
+			<div id="content_area" class="clearfix">
+				<div id="content_menu">
+					<div id="sub_nav"></div>
+					<div id="sub_nav_content"><div class="extension_navigation">
+	<ul class="wfkb_navigation">
+		<li class="wfkb_navigation_parents">
+			<div><a href="../../../medialex.html">Alle Kategorien</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../audiografie.html">Audio</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../betriebssysteme.html">Betriebssysteme</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../css.html">CSS</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../design.html">Design</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../fotografie.html">Fotografie</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../google.html">Google</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../htaccess.html">htaccess</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../html.html">HTML</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../javascript.html">JavaScript</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../php.html">PHP</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../regex.html">RegEx</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../robots.html">Robots</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../seo.html">SEO</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../server.html">Server</a></div>
+		</li>
+				<li class="wfkb_navigation_parents active">
+			<div><a href="../../smarty.html">Smarty</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../videografie.html">SQL</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../typo3.html">TYPO3</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../wasserzeichen.html">Wasserzeichen</a></div>
+		</li>
+				<li class="wfkb_navigation_parents">
+			<div><a href="../../wiki-syntax.html">Wiki-Syntax</a></div>
+		</li>
+			</ul>
+</div></div>
+					
+				</div>
+				<div id="content_wrapper">
+					<div id="content"><!--TYPO3SEARCH_begin--><div class="prevnextpaging"></div><form id="wfkb_search_form" action="http://www.markusbrunner.de/medialex.html" method="get">
+	<input id="wfkb_search" name="tx_mbwikifileknowledgebase_pi1[searchword]" type="text" title="" value="" />
+	<div id="suggestOutput" style="display:none"></div>
+	<input type="submit" class="noscript" value="Suchen" />
+</form>
+<script src="../../../typo3conf/ext/mbwikifileknowledgebase/res/js/jquery_suggest_v1.1.0.min.js"></script>
+<script>
+
+/* <![CDATA[ */
+	(function($) {
+		$(document).ready(function(){
+			jQuery('#wfkb_search').addInputSuggest({
+				url:'/index.php?eID=wfkb_ajax_search&searchword=',
+				suggestBoxSelector:'#suggestOutput',
+				onClick:function(elem){
+					jQuery('#wfkb_search_form').submit();
+				}
+			});
+		});
+	})(jQuery);
+/* ]]> */
+
+</script><h1>Smarty</h1><h2>Was ist Smarty</h2>Smarty ist eine Template-Engine f&uuml;r PHP. <a href="http://smarty.net/" class="knowledgebase-link">smarty.net</a><h2>Smarty Schnipsel</h2><h3>Kommentar</h3><pre class="brush: php; toolbar: false;">
+	{* Kommentar *}
+</pre><h3>if else</h3><pre class="brush: php; toolbar: false;">
+	{if $myVar == 'Yes'}...{else}...{/if}
+</pre><h4>Vergleichsoperatoren</h4><pre class="brush: php; toolbar: false;">
+	==
+	===
+	!=
+	&gt;
+	&gt;=
+	%
+	is even
+	is not even
+	eq
+</pre><h4>mindestens ein Element</h4><pre class="brush: php; toolbar: false;">
+	{if $elements|@count gt 0}...{/if}
+</pre><h3>Array iterieren mit foreach</h3><pre class="brush: php; toolbar: false;">
+	{foreach from=$passesData item=pass key=key}
+		value: {$pass.value1}
+	{/foreach}
+</pre><h4>abwechselnd etwas anderes ausgeben mit cycle</h4><pre class="brush: php; toolbar: false;">
+	{cycle values=&quot;odd, even&quot;}
+</pre><h3>section zum Hochz&auml;hlen/Iterieren</h3><pre class="brush: php; toolbar: false;">
+	{section name=starLoop start=0 loop=$elem.stars step=1}
+		&lt;img class=&quot;stars&quot; src=&quot;star.png&quot; title=&quot;{$elem.stars} {$lang.stars}&quot; alt=&quot;{$elem.stars} {$lang.stars}&quot; /&gt;
+	{/section}
+</pre><h3>k&uuml;rzen mit truncate</h3><pre class="brush: php; toolbar: false;">
+	{$text|truncate:20}
+	{$text|truncate:20:'..':false:false}
+</pre><h3>Formatierung und Ersetzung</h3><pre class="brush: php; toolbar: false;">
+	{$store.km|string_format:&quot;%.2f&quot;|replace:&quot;.&quot;:&quot;,&quot;}
+</pre><br/>===Datumsformatierung=
+<pre class="brush: php; toolbar: false;">
+	{$yesterday|date_format:&quot;%d.%m.%Y&quot;}
+	{$time|date_format:&quot;%H:%M&quot;}
+</pre><h3>nicht parsen/auswerten</h3><pre class="brush: php; toolbar: false;">
+	{literal}
+		/* Inhalt dazwischen mit geschweiften Klammern { */
+		&lt;script type=&quot;text/javascript&quot;&gt;
+			function test() {
+				alert('javascript');
+			}
+		&lt;/script&gt;
+	{/literal}
+</pre><h3>Mathematische Operation</h3><pre class="brush: php; toolbar: false;">
+	{math equation=&quot;x + y&quot; x=$height y=$width}
+</pre><h3>neue Variable in smarty zuweisen</h3><pre class="brush: php; toolbar: false;">
+	{assign var='myName' value=$var.subvar}
+</pre><h4>Kategorie ausgeben, falls neue Kategorie beginnt</h4><pre class="brush: php; toolbar: false;">
+	{assign var='category' value=''}
+	{foreach from=$elements item=element}
+		{* headline of elements *}
+		{if $category != $element.category}
+			{assign var='category' value=$element.category}
+			&lt;h2&gt;{$category}&lt;/h2&gt;
+		{/if}
+		{* elements *}
+		&lt;div&gt;{element.value}&lt;/div&gt;
+	{/foreach}
+</pre><h3>Datei einbinden</h3><pre class="brush: php; toolbar: false;">
+	{foreach from=$arrProducts item=product key=index name=foo}
+		{if $view == 1}
+			{include file=&quot;view1.tpl&quot; fooIndex=$smarty.foreach.foo.index}
+		{else}
+			{include file=&quot;view2.tpl&quot; fooIndex=$smarty.foreach.foo.index}
+		{/if}
+	{foreachelse}
+</pre><h3>Letztes Element</h3><pre class="brush: php; toolbar: false;">
+	{foreach from=$arrProducts item=product key=index name=foo}
+		&lt;li class=&quot;{if $smarty.foreach.foo.last}last{/if}&quot;&gt;...&lt;/li&gt;
+	{/foreach}
+</pre><h2>Smarty Modifier erstellen</h2><h3>bestehende PHP-Funktion registrieren</h3><pre class="brush: php; toolbar: false;">
+	$this-&gt;getSmarty()-&gt;register_modifier('methodexists', 'checkMethod');
+</pre><h3>eigene PHP-Funktion registrieren</h3><h4>Methode eines Objekts auf Existenz pr&uuml;fen</h4><h5>direkt registrieren</h5><pre class="brush: php; toolbar: false;">
+	function methodexists($object, $method) {
+		if(is_object($object) &amp;&amp; method_exists($object, $method)) {
+			return true;
+		} 
+		return false;
+	}
+	$this-&gt;getSmarty()-&gt;register_modifier('methodexists', 'checkMethod');
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{if $object|checkMethod:'methodexists'}...{/if}
+</pre><h5>Inkludierung &uuml;ber den Smarty-Pluginfolder</h5><pre class="brush: php; toolbar: false;">
+	function smarty_modifier_methodexists($object,$method) {
+		if(is_object($object) &amp;&amp; method_exists($object,$method)) {
+			return true;
+		}
+		return false;
+	}
+</pre>
+<pre class="brush: php; toolbar: false;">
+	$smarty-&gt;plugins_dir[] = 'includes/my_smarty_plugins';
+	/* TYPO3 smarty-ext TypoScript:
+	smarty {
+		plugins_dir = smarty/viewhelper/, EXT:myext/view/viewhelper/
+	}
+	*/
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{if $object|checkMethod:'methodexists'}...{/if}
+</pre>
+====in_array===
+<pre class="brush: php; toolbar: false;">
+	// register function
+	class ... {
+		function ... {
+			$this-&gt;getSmarty()-&gt;register_function('in_array', 'smarty_function_inarray');
+		}
+	}
+	/* smarty function */
+	function smarty_function_inarray($params, &amp;$smarty) {
+	  #t3lib_div::debug($params, '$params in smarty_function_inarray');
+	  if(!is_array($params['haystack'])) {
+		$params['haystack'] = explode(',', $params['haystack']);
+	  }
+	  if(in_array($params['needle'], $params['haystack'])) {
+		return $params['content_if'];
+	  }
+	  return (!empty($params['content_else'])) ? $params['content_else'] : '';
+	}
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{in_array needle=$id haystack=$postVars.uids content_if='checked=&quot;checked&quot;'}
+</pre><h4>is_zero</h4><pre class="brush: php; toolbar: false;">
+	function smarty_modifier_iszero($variable) {
+	  if($variable === 0 || $variable === '0') {
+		return true;
+	  }
+	  return false;
+	}
+</pre>
+
+<div class="divider">
+	<hr />
+</div>
+<p class="wfkb_file_download">
+	<a class="download" href="../../../fileadmin/content/medialex/Smarty/smarty_template_engine.txt" target="_blank">Wiki-Datei des Artikels herunterladen</a>
+</p>
+<!--TYPO3SEARCH_end--></div>
+					
+				</div>
+			</div>
+		</div>
+	  
+		<div id="footer" class="clearfix">
+			<div id="footer_menu" class="clearfix"><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../impressum.html">Informationen</a></div></li><li class="subElements"><ul><li><div><a href="../../../kontakt.html">Kontakt</a></div></li><li><div><a href="../../../impressum.html">Impressum</a></div></li><li><div><a href="../../../datenschutz.html">Datenschutz</a></div></li><li><div class="last"><a href="../../../sitemap.html">Sitemap</a></div></li></ul></li></ul><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../ueber-mich/steckbrief.html">Über mich</a></div></li><li class="subElements"><ul><li><div><a href="../../../ueber-mich/steckbrief.html">Steckbrief</a></div></li><li><div><a href="../../../ueber-mich/studium.html">Studium</a></div></li><li><div><a href="../../../ueber-mich/lebenslauf.html">Lebenslauf</a></div></li><li><div class="last"><a href="../../../ueber-mich/nachweise.html">Nachweise</a></div></li></ul></li></ul><ul class="footerCategory"><li class="hasSub"><div class="last"><a href="../../../programmierung.html">Programmierung</a></div></li><li class="subElements"><ul><li><div><a href="../../../programmierung/t3-extensions.html">T3-Extensions</a></div></li><li><div class="last"><a href="../../../programmierung/js-plugins.html">JS-Plugins</a></div></li></ul></li></ul><div id="profiles">
+	<p class="footerHeading">Profile</p>
+	<a target="_blank" href="http://www.xing.com/profile/Markus_Brunner23">
+		<img src="../../../fileadmin/content/profile/xing.gif" alt="XING" />
+	</a>
+	<a target="_blank" href="http://twitter.com/MarkusBrunnerDe">
+    <img src="../../../fileadmin/content/profile/twitter.gif" alt="TWITTER" />
+  </a>
+</div><div id="profiles">
+  <p class="footerHeading">Profile</p>
+  <a target="_blank" href="http://www.photocase.de/de/user.asp?u=97299">
+    <img src="../../../fileadmin/content/profile/photocase.gif" alt="PHOTOCASE" />
+  </a>
+  <a target="_blank" href="https://www.mygall.net/markusbrunner">
+    <img src="../../../fileadmin/content/profile/mygall.gif" alt="MYGALL" />
+  </a>
+  <a target="_blank" href="http://500px.com/heavyhawk123">
+    <img src="../../../fileadmin/content/profile/500px.gif" alt="500px" />
+  </a>
+</div><div id="validation">
+  <p class="footerHeading">Validierung</p>
+  <a target="_blank" href="http://validator.w3.org/check?uri=referer">
+    <img src="../../../fileadmin/content/profile/w3c_html5.png" alt="HTML5" />
+  </a>
+  <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img src="../../../fileadmin/content/profile/w3c_css.png" alt="CSS3" />
+  </a>
+</div><script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="../../../../w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="../../../../s.sharethis.com/loader.js"></script>
+<script type="text/javascript">stLight.options({publisher: "c7746ef8-01f0-4fc5-b055-3a3da65dac2e", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script type="text/javascript">
+var options={ "publisher": "c7746ef8-01f0-4fc5-b055-3a3da65dac2e", "position": "right", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "pinterest", "email", "sharethis"]}};
+var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+</script></div></div>
+		</div>
+	</div>
+	<div id="tools"><!-- browser-update.org integration // begin -->
+<script type="text/javascript"> 
+var $buoop = {vs:{i:9,f:25,o:17,s:6,n:9}}; 
+$buoop.ol = window.onload; 
+window.onload=function(){ 
+ try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+ var e = document.createElement("script"); 
+ e.setAttribute("type", "text/javascript"); 
+ e.setAttribute("src", "../../../../browser-update.org/update.js"); 
+ document.body.appendChild(e); 
+} 
+</script>
+<!-- browser-update.org integration // end --></div><div id="tracking"><script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20259609-1']);
+  _gaq.push (['_gat._anonymizeIp']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></div>
+
+
+
+
+</body>
+
+<!-- Mirrored from www.markusbrunner.de/medialex/artikel/smarty/smarty-template-engine.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Oct 2018 06:49:57 GMT -->
+</html>

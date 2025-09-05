@@ -1,0 +1,33 @@
+
+=PHP Regex=
+
+==PHP Funktionen==
+
+===Ist ein String vorhanden?: preg_match===
+<pre class="brush: php; toolbar: false; highlight: [2];">
+	if(preg_match(
+					'/(\#\#\#GET\#\#\#)([\w]*[\[]?[\w]*[\]]?)(\#\#\#\/GET\#\#\#)/', 
+					'Mein super toller Text ###GET###id###/GET### ist hier.'
+	)) { echo "true"; }
+</pre>
+
+===Ersetze einen bestimmten String: preg_replace===
+<pre class="brush: php; toolbar: false; highlight: [2, 3];">
+	echo preg_replace(
+					'/(\#\#\#GET\#\#\#)([\w]*[\[]?[\w]*[\]]?)(\#\#\#\/GET\#\#\#)/', 
+					'$2', 
+					'Mein super toller Text ###GET###id###/GET### ist hier.'
+	);
+</pre>
+
+===Rufe eine Funktion zum Verarbeiten des Strings auf, falls er gefunden wird: preg_replace_callback===
+<pre class="brush: php; toolbar: false; highlight: [3, 6];">
+	echo preg_replace_callback(
+					'/(\#\#\#GET\#\#\#)([\w]*[\[]?[\w]*[\]]?)(\#\#\#\/GET\#\#\#)/', 
+					'checkfunction', 
+					'Mein super toller Text ###GET###id###/GET### ist hier.'
+	);
+	function checkfunction($m) {
+		return $_GET[$m[2]];
+	}
+</pre>

@@ -1,0 +1,90 @@
+
+=SQL Anwendungsfälle=
+
+==SQL Auswahlselektierung==
+===Nur Galerien, die auch Bilder beinhalten===
+<pre class="brush: sql; toolbar: false;">
+	SELECT 
+		g.*, 
+		u.username 
+	FROM fe_users u, 
+		tx_nfccommunitygallery_gallery g 
+		LEFT JOIN tx_nfccommunitygallery_images i 
+		ON g.uid = i.gallery_id 
+	WHERE 
+		g.hidden = 0 AND 
+		g.deleted = 0 AND 
+		g.user_id = u.uid AND 
+		g.uid IN 
+		( 
+			SELECT tx_nfccommunitygallery_images.gallery_id 
+			FROM tx_nfccommunitygallery_images 
+			WHERE tx_nfccommunitygallery_images.gallery_id = g.uid 
+			AND tx_nfccommunitygallery_images.deleted = 0 
+		) 
+	GROUP BY 
+		g.uid 
+	ORDER BY 
+		g.crdate DESC 
+	LIMIT 
+		0, 10
+</pre>
+===Nur Zeitspannen, die innerhalb einer eingegebenen Zeitspanne liegen===
+In der Datenbank liegen Zeitspannen (from, to) und der Nutzer kann eine Zeitspanne (from, to) eingeben. Es werden nur diese Daten ausgegeben. Zusätzlich wird durch trip_to >= UNIX_TIMESTAMP(now()) noch hervorgerufen, dass nur Daten, die in der Zukunft liegen ausgegeben werden:
+<pre class="brush: sql; toolbar: false;">
+	SELECT
+		...
+	FROM
+		...
+	WHERE 
+		...
+		AND 
+		(
+			tx_nfcbiketours_trip_bookable.trip_from <= "'.gmmktime(0,0,0,intval($dateFrom_exploded[1]),intval($dateFrom_exploded[0]),intval($dateFrom_exploded[2])).'" 
+		) 
+		OR
+		(
+			trip_from BETWEEN UNIX_TIMESTAMP("'.$dateFrom_exploded[2].'-'.$dateFrom_exploded[1].'-'.$dateFrom_exploded[0].'") AND UNIX_TIMESTAMP("'.$dateTo_exploded[2].'-'.$dateTo_exploded[1].'-'.$dateTo_exploded[0].'")
+			OR 
+			trip_to BETWEEN UNIX_TIMESTAMP("'.$dateFrom_exploded[2].'-'.$dateFrom_exploded[1].'-'.$dateFrom_exploded[0].'") AND UNIX_TIMESTAMP("'.$dateTo_exploded[2].'-'.$dateTo_exploded[1].'-'.$dateTo_exploded[0].'")
+			OR
+			UNIX_TIMESTAMP("'.$dateFrom_exploded[2].'-'.$dateFrom_exploded[1].'-'.$dateFrom_exploded[0].'") BETWEEN trip_from AND trip_to
+			OR
+			UNIX_TIMESTAMP("'.$dateTo_exploded[2].'-'.$dateTo_exploded[1].'-'.$dateTo_exploded[0].'") BETWEEN trip_from AND trip_to
+		)
+		AND 
+		(
+			trip_to >= UNIX_TIMESTAMP(now())
+		)
+</pre>
+
+==Navigationslösung mit SQL_CALC_FOUND_ROWS==
+[http://phpperformance.de/sql_calc_found_rows-oder-wie-man-effektiv-blaetternavigationen-umsetzt/|Navigationslösung]
+1. Abfrage mit SQL_CALC_FOUND_ROWS
+<pre class="brush: sql; toolbar: false;">
+	SELECT SQL_CALC_FOUND_ROWS ID,name,kategorie
+	FROM tabelle INNER JOIN kategorien ON tabelle.kategorien_ID=kategorien.ID
+	WHERE spalte1 IN (SELECT ID FROM andereTabelle WHERE email!=""
+	ORDER BY zeit DESC LIMIT 15,20
+</pre>
+2. Abfrage der Ergebnisse mit FOUND_ROWS() - liefert die gesamte Anzahl der Ergebnisse ohne Limit
+<pre class="brush: sql; toolbar: false;">
+	SELECT FOUND_ROWS()
+</pre>
+===TYPO3 Beispiel===
+<pre class="brush: php; toolbar: false;">
+	protected function getMyRecords() {
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($ar_select['select_fields'],$ar_select['from_table'],$ar_select['where_clause'],$ar_select['groupBy'],$ar_select['orderBy'],$ar_select['limit']);
+		$arr_res = array();
+		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			$arr_res[] = $row;
+		}
+		$resCount = getNumberOfResultsForSQL_CALC_FOUND_ROWSStatements();
+		return array('records' => $arr_res, 'count' => $resCount);
+	}
+	protected function getNumberOfResultsForSQL_CALC_FOUND_ROWSStatements() {
+		$res = $GLOBALS['TYPO3_DB']->sql_query('SELECT FOUND_ROWS() AS count_rows');
+		$row =  $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+		return $row['count_rows'];
+	}
+</pre>

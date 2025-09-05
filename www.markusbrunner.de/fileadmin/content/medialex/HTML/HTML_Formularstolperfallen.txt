@@ -1,0 +1,40 @@
+
+=HTML Formularstolperfallen=
+
+==Select Multiple==
+Wenn man bei selects mehrere Werte empfangen soll (zumindest in PHP), 
+muss hinter dem Namen ein leeres Array im Namen eingefügt werden:
+<pre class="brush: xml; toolbar: false;">
+	<select name="variable[]" multiple="multiple">
+</pre>
+
+==File-Upload==
+Einschränkung der Dateien im HTML:
+<pre class="brush: html; toolbar: false;">
+	<input type="file" accept="image/gif, image/jpeg, image/png" id="bla" class="blub" name="bla" />
+</pre>
+
+==Select automatisch abschicken mit Link aus Option-Value==
+<pre class="brush: html; toolbar: false;">
+	<form action="{$singleViewLink}" method="get">
+		<!-- id is needed for method get - action is not interpreted for js-submit -->
+		<input type="hidden" name="id" value="{$singleViewId}"/>
+		<select name="tx_nfchoamanagement_pi1[location]" onchange="this.form.submit()">
+			<option value="">{$lang.search_destination_choosedestination}</option>
+			{foreach from=$data key=k item=location}
+			<option value="{$location.uid}">{$location.name}</option>
+			{/foreach}
+		</select>
+		<input id="submit_search_destination" type="submit" value="{$lang.submit_button}" />
+		<script type="text/javascript">
+			<!--
+			document.getElementById('submit_search_destination').style.display='none';
+			-->
+		</script>
+	</form>
+</pre>
+
+==Formular deaktivieren==
+<pre class="brush: html; toolbar: false;">
+	<form onSubmit="return false;">...</form>
+</pre>

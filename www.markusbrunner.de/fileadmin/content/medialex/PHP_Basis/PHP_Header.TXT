@@ -1,0 +1,59 @@
+
+=PHP Header=
+
+==200 OK==
+<pre class="brush: php; toolbar: false;">
+	header("Status: 200"); // OK -> Inhalt gefunden
+</pre>
+
+==Browser umleiten==
+<pre class="brush: php; toolbar: false;">
+	header("Location: http://www.example.com/");
+</pre>
+
+==404 Not found==
+<pre class="brush: php; toolbar: false;">
+	header("HTTP/1.0 404 Not Found");
+	exit();
+</pre>
+
+==204 No Content==
+<pre class="brush: php; toolbar: false;">
+	header('HTTP/1.0 204 No Content');
+	header('Content-Length: 0',true);
+	header('Content-Type: text/html',true);
+	flush();
+</pre>
+
+==301 Moved Permanently==
+<pre class="brush: php; toolbar: false;">
+	header("Location: /foo.php",TRUE,301);
+</pre>
+
+==302 Found==
+<pre class="brush: php; toolbar: false;">
+	header("Location: /foo.php",TRUE,302);
+	header("Location: /foo.php");
+</pre>
+
+==303 See Other==
+<pre class="brush: php; toolbar: false;">
+	header("Location: /foo.php",TRUE,303);
+</pre>
+
+==304 Not modified==
+<pre class="brush: php; toolbar: false;">
+	header("HTTP/1.1 304 Not Modified");
+	exit;
+</pre>
+
+==307 Temporary Redirect==
+<pre class="brush: php; toolbar: false;">
+	header("Location: /foo.php",TRUE,307);
+</pre>
+
+==Cache unterbinden==
+<pre class="brush: php; toolbar: false;">
+	header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Datum in der Vergangenheit
+</pre>

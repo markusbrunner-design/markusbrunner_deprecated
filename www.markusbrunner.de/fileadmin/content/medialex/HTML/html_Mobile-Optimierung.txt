@@ -1,0 +1,19 @@
+=HTML Mobile Optimierung=
+
+Will man auf mobile Endgeräte optimieren, stößt man schnell auf große Probleme: jedes Endgerät hat eine unterschiedliche Auflösung und mittels CSS Media Queries für alle Endgeräte eine eigene Lösung zu schustern ist wirklich sehr aufwendig. Sollte man den Vorteil haben, dass die Website quasi kein Design besitzt, sollte es auch leicht mit einem skalierbarem CSS-Design machbar sein, dass nur mit %-Angaben auskommt, statt fixe px- oder em-Werte zu verwenden. Doch gesetzt dem Fall, man HAT ein Layout und will nicht für jede Auflösung separat optimieren, so präsentiere ich hier den heiligen Gral der schnellen Optimierung. Ziel ist es hierbei die Breite des Layouts auf die des Device zu ziehen. Das funktioniert bei den meisten Devices sehr gut. Leichter kann eine Optimierung natürlich nicht ausfallen wie diese:
+
+<pre class="brush: xml; toolbar: false; highlight: 5;">
+	<html>
+		<head>
+			<title>Mobile-Optimierung</title>
+			<meta 	name="viewport"
+					content="width=device-width, target-densitydpi=device-dpi, user-scalable=1, minimum-scale=0.2, maximum-scale=1.5" />
+			...
+		</head>
+		<body>
+			...
+		</body>
+	</html>
+</pre>
+
+Die wichtigen Komponenten hierbei sind width=device-width und target-densitydpi=device-dpi. Elementar ist, dass der initial-scale Faktor NICHT angegeben werden darf, da ansonsten die automatische Skalierung ausgehebelt wird. Trotz dessen sollte der Nutzer weiterhin die Möglichkeit haben zu skalieren, v.a. wenn es doch nicht optimal dargestellt werden sollte - daher user-scalable=1. Die minimum- und maximum-scale Werte können natürlich beliebig angepasst werden. Hier geht es um die Grenzwerte der Skalierung die wiederum von der Layoutbreite abhängen. Wäre es beispielsweise 960px, so wäre ein maximum-scale=1.5 bei einem Display mit 1440px und ein minimum-scale=0.2 bei einem Display von 192px erreicht (Layoutbreite * Faktor).

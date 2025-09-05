@@ -1,0 +1,34 @@
+
+=mootools ganz einfach HTML per Ajax laden=
+
+==JavaScript Client==
+<pre class="brush: jscript; toolbar: false;">
+	// google load: google.setOnLoadCallback(function() {
+	/* domready-event */
+	window.addEvent('domready', function() {
+		/* change-event */
+		$('destination').addEvent('change',function(){	
+			/* HTML-Container anzeigen */
+			$('ajax_select_custom_1_wrapper').setStyle('display','block');
+			/* HTML vom Server abfragen und in den Container schreiben (wird korrekt als HTML ins FOM eingefügt!) */
+			$('timeperiod').load('http://www.test.de/meininhalt.php');
+		});
+	});
+	// google load: });
+</pre>
+
+==HTML - Client==
+<pre class="brush: xml; toolbar: false;">
+	<select id="result" name="variations">
+		<option value="0">keine Ergebnisse</option>
+	</select>
+</pre>
+
+==PHP - Server==
+<pre class="brush: php; toolbar: false;">
+	<?php
+		echo '<option value="1">10.12-13-12.</option>'.
+			 "\n".
+			 '<option value="2">11.12-14-12.</option>';
+	?>
+</pre>

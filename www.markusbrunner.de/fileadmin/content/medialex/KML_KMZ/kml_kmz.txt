@@ -1,0 +1,8 @@
+
+=KML- oder KMZ-Daten=
+Die Geokoordinaten werden bei Google in KML- bzw. KMZ-Daten abgespeichert. KMZ-Daten sind komprimierte KML-Daten und können mit einem Zip-Programm extrahiert werden. Um diese Daten in eine Google-Map zu laden (z.B. Points of Interest), benötigt man die zu ladende Datei (z.B. von wikitude.org) und folgenden JavaScript-Code: 
+<pre class="brush: jscript; toolbar: false;">
+	var geoXml = new GGeoXml("datei.kml/kmz");
+	map.addOverlay(geoXml);
+</pre>
+...der auf die Google-Map (hier map) angewandt wird.

@@ -1,0 +1,10 @@
+
+=JQuery $-Konflikt umgehen=
+
+* in allen Dateien $j statt $ verwenden
+* alle Aufrufe statt mit $ nun mit $j ausführen (der Aufruf muss bevor irgendeine Aktion statt findet und weitere Frameworks inkludiert werden, gemacht werden, damit er greift)
+
+<pre class="brush: jscript; toolbar: false;">
+	// Conflict of $ -> use $j instead of $
+	var $j = jQuery.noConflict();
+</pre>

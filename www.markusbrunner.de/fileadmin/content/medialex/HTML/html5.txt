@@ -1,0 +1,125 @@
+
+=HTML5=
+==Doctype==
+
+<pre class="brush: xml; toolbar: false;">
+	&lt;!DOCTYPE html&gt;
+</pre>
+
+==Browser-Kompatibilität==
+Unser Lieblingsbrowser aus Redmond verfährt mit den neuen Elementen natürlich nicht "einigermaßen sinnvoll" (es wäre wohl sonst auch zu einfach). Alle Versionen von 6 bis 8 produzieren aus folgendem HTML:
+<pre class="brush: xml; toolbar: false;">
+	<section class="alpha"><h1>Inhalt</h1></section>
+	=> <section class="alpha"></section><h1>Inhalt</h1><section></section>
+</pre>
+Deswegen Einsatz des HTML5 enabling scripts:
+<pre class="brush: xml; toolbar: false;">
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</pre>
+
+==Header und Footer==
+For example, if you used the footer element as the footer for a full web page, then in that case copyright, policy links, and related content might be appropriate for it to hold. A header on the same page might contain a logo and navigation bar.
+&lt;header&gt; - designed to mark up introductory or navigational aids (better than &lt;div id="header"&gt; because of semantic meaning - not just limited to use as a "website header")
+&lt;footer&gt; - designed to contain information about the containing element (better than &lt;div id="footer"&gt; because of semantic meaning - not just limited to use as a "website footer")
+
+==Other new elements==
+<pre class="brush: xml; toolbar: false;">
+	<aside> - for side cols [e.g. navigation, additional information]
+	<nav> - for navigations
+	<article> - designed for syndication
+	<section> - designed for document structure and portability
+</pre>
+
+==Audio und Video==
+<pre class="brush: xml; toolbar: false;">
+	<audio>
+	<video>
+</pre>
+
+==Headings==
+h1:
+* Instead of a single &lt;h1&gt; element per page, HTML5 best practice encourages up to one &lt;h1&gt; for each &lt;section&gt; element (or other section defined by some other means)
+* Although we’re permitted to start a section with an &lt;h2&gt; (or lower-ranked) element, it's strongly encouraged to start each &lt;section&gt; with an &lt;h1&gt; element to help sections become portable
+* to group headings with direct subheadings
+_____________
+<pre class="brush: xml; toolbar: false;">
+	<hgroup>
+	 <h1>The reality dysfunction</h1>
+	 <h2>Space is not the only void</h2>
+	</hgroup>
+</pre>
+
+==Forms==
+[http://diveintohtml5.org/forms.html|Quelle]
+
+==New Types== 
+* type="search" [get a deleted icon if filled out]
+* type="email" [very good for mobile devices - browsers that don’t recognize type="email" will treat it as type="text" and render it as a plain text field]
+** if multiple attribute is set, multiple email addresses may be entered into that <input> field, as a space-separated list, but this is currently unimplemented in Firefox
+* type="url" [very good for mobile devices - browsers that don’t recognize type="email" will treat it as type="text" and render it as a plain text field]
+* type="number" [spin box] -> comes along with min="0" max="10" step="2" value="6"
+** JS Additions:
+*** input.stepUp(n) increases the field’s value by n.
+*** input.stepDown(n) decreases the field’s value by n.
+*** input.valueAsNumber returns the current value as a floating point number. (The input.value property is always a string.)
+* type="range" [slider] -> comes along with min="0" max="10" step="2" value="6"
+* type="date"	9.0+	·
+* type="month"	9.0+	·
+* type="week"	9.0+	·
+* type="time"	9.0+	·
+* type="datetime"	9.0+	·
+* type="datetime-local"
+* type="color"
+* type="tel" -> comes with maxlength and pattern
+__________________
+
+==New Attributes==
+* placeholder="Enter Your Name Here"
+CSS-Styling for knowing-browsers:
+<pre class="brush: css; toolbar: false;">
+	input.red::-webkit-input-placeholder {
+		color: rgb(100, 0, 0);
+	}
+</pre>
+___________
+* autofocus="autofocus" [form-element has focus on page-load]
+** JS-Fallback for non-knowing browsers:
+___________
+===NATIVE===
+<pre class="brush: jscript; toolbar: false;">
+	<script>
+	if (!("autofocus" in document.createElement("input"))) {
+	  document.getElementById("q").focus();
+	}
+	</script>
+</pre>
+===JQUERY===
+<pre class="brush: jscript; toolbar: false;">
+	<script src=jquery.min.js></script>
+	<script>
+	  $(document).ready(function() {
+		if (!("autofocus" in document.createElement("input"))) {
+		  $("#q").focus();
+		}
+	  });
+	</script>
+</pre>
+________________
+* &lt;form&gt; -&gt; novalidate="novalidate" [to turn off default HTML5 form validation]
+* required="required" [check if field ist set]
+* pattern [a regular expression that the control's value is checked against, which can be used with type  values of text, tel, search, url, and email] 
+** ten digits: pattern="\d{10}"
+** password: <pre>pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*"</pre> (must be at least eight characters long, contain one number, one lowercase letter, and one uppercase letter)
+* formmethod (overrides the forms method GET or POST for this element)
+* list (The ID of a &lt;datalist&gt; element whose content, &lt;option&gt; elements, are to be used as hints and are displayed as proposals in the suggestion area of the input field)
+* x-moz-errormessage (Error Message - only in Mozilla Firefox)
+________________
+
+==New Elements==
+________________
+* &lt;datalist&gt; (represents the list of &lt;option&gt; elements to suggest when filling an &lt;input&gt; field)
+* &lt;output&gt; (represents the result of a calculation)
+** You can use the for  attribute to specify a relationship between the output element and other elements in the document that affected the calculation (for example, as inputs or parameters). The value of the for  attribute is a space-separated list of IDs of other elements.
+________________

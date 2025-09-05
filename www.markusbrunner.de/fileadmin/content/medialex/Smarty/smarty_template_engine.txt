@@ -1,0 +1,199 @@
+
+=Smarty=
+
+==Was ist Smarty==
+Smarty ist eine Template-Engine für PHP. [http://smarty.net|smarty.net]
+
+==Smarty Schnipsel==
+===Kommentar===
+<pre class="brush: php; toolbar: false;">
+	{* Kommentar *}
+</pre>
+
+===if else===
+<pre class="brush: php; toolbar: false;">
+	{if $myVar == 'Yes'}...{else}...{/if}
+</pre>
+
+====Vergleichsoperatoren====
+<pre class="brush: php; toolbar: false;">
+	==
+	===
+	!=
+	>
+	>=
+	%
+	is even
+	is not even
+	eq
+</pre>
+
+====mindestens ein Element====
+<pre class="brush: php; toolbar: false;">
+	{if $elements|@count gt 0}...{/if}
+</pre>
+
+===Array iterieren mit foreach===
+<pre class="brush: php; toolbar: false;">
+	{foreach from=$passesData item=pass key=key}
+		value: {$pass.value1}
+	{/foreach}
+</pre>
+
+====abwechselnd etwas anderes ausgeben mit cycle====
+<pre class="brush: php; toolbar: false;">
+	{cycle values="odd, even"}
+</pre>
+
+===section zum Hochzählen/Iterieren===
+<pre class="brush: php; toolbar: false;">
+	{section name=starLoop start=0 loop=$elem.stars step=1}
+		<img class="stars" src="star.png" title="{$elem.stars} {$lang.stars}" alt="{$elem.stars} {$lang.stars}" />
+	{/section}
+</pre>
+
+===kürzen mit truncate===
+<pre class="brush: php; toolbar: false;">
+	{$text|truncate:20}
+	{$text|truncate:20:'..':false:false}
+</pre>
+
+===Formatierung und Ersetzung===
+<pre class="brush: php; toolbar: false;">
+	{$store.km|string_format:"%.2f"|replace:".":","}
+</pre>
+
+===Datumsformatierung=
+<pre class="brush: php; toolbar: false;">
+	{$yesterday|date_format:"%d.%m.%Y"}
+	{$time|date_format:"%H:%M"}
+</pre>
+
+===nicht parsen/auswerten===
+<pre class="brush: php; toolbar: false;">
+	{literal}
+		/* Inhalt dazwischen mit geschweiften Klammern { */
+		<script type="text/javascript">
+			function test() {
+				alert('javascript');
+			}
+		</script>
+	{/literal}
+</pre>
+
+===Mathematische Operation===
+<pre class="brush: php; toolbar: false;">
+	{math equation="x + y" x=$height y=$width}
+</pre>
+
+===neue Variable in smarty zuweisen===
+<pre class="brush: php; toolbar: false;">
+	{assign var='myName' value=$var.subvar}
+</pre>
+
+====Kategorie ausgeben, falls neue Kategorie beginnt====
+<pre class="brush: php; toolbar: false;">
+	{assign var='category' value=''}
+	{foreach from=$elements item=element}
+		{* headline of elements *}
+		{if $category != $element.category}
+			{assign var='category' value=$element.category}
+			<h2>{$category}</h2>
+		{/if}
+		{* elements *}
+		<div>{element.value}</div>
+	{/foreach}
+</pre>
+
+===Datei einbinden===
+<pre class="brush: php; toolbar: false;">
+	{foreach from=$arrProducts item=product key=index name=foo}
+		{if $view == 1}
+			{include file="view1.tpl" fooIndex=$smarty.foreach.foo.index}
+		{else}
+			{include file="view2.tpl" fooIndex=$smarty.foreach.foo.index}
+		{/if}
+	{foreachelse}
+</pre>
+
+===Letztes Element===
+<pre class="brush: php; toolbar: false;">
+	{foreach from=$arrProducts item=product key=index name=foo}
+		<li class="{if $smarty.foreach.foo.last}last{/if}">...</li>
+	{/foreach}
+</pre>
+
+==Smarty Modifier erstellen==
+
+===bestehende PHP-Funktion registrieren===
+<pre class="brush: php; toolbar: false;">
+	$this->getSmarty()->register_modifier('methodexists', 'checkMethod');
+</pre>
+
+===eigene PHP-Funktion registrieren===
+====Methode eines Objekts auf Existenz prüfen====
+=====direkt registrieren=====
+<pre class="brush: php; toolbar: false;">
+	function methodexists($object, $method) {
+		if(is_object($object) && method_exists($object, $method)) {
+			return true;
+		} 
+		return false;
+	}
+	$this->getSmarty()->register_modifier('methodexists', 'checkMethod');
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{if $object|checkMethod:'methodexists'}...{/if}
+</pre>
+=====Inkludierung über den Smarty-Pluginfolder=====
+<pre class="brush: php; toolbar: false;">
+	function smarty_modifier_methodexists($object,$method) {
+		if(is_object($object) && method_exists($object,$method)) {
+			return true;
+		}
+		return false;
+	}
+</pre>
+<pre class="brush: php; toolbar: false;">
+	$smarty->plugins_dir[] = 'includes/my_smarty_plugins';
+	/* TYPO3 smarty-ext TypoScript:
+	smarty {
+		plugins_dir = smarty/viewhelper/, EXT:myext/view/viewhelper/
+	}
+	*/
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{if $object|checkMethod:'methodexists'}...{/if}
+</pre>
+====in_array===
+<pre class="brush: php; toolbar: false;">
+	// register function
+	class ... {
+		function ... {
+			$this->getSmarty()->register_function('in_array', 'smarty_function_inarray');
+		}
+	}
+	/* smarty function */
+	function smarty_function_inarray($params, &$smarty) {
+	  #t3lib_div::debug($params, '$params in smarty_function_inarray');
+	  if(!is_array($params['haystack'])) {
+		$params['haystack'] = explode(',', $params['haystack']);
+	  }
+	  if(in_array($params['needle'], $params['haystack'])) {
+		return $params['content_if'];
+	  }
+	  return (!empty($params['content_else'])) ? $params['content_else'] : '';
+	}
+</pre>
+<pre class="brush: plain; toolbar: false;">
+	{in_array needle=$id haystack=$postVars.uids content_if='checked="checked"'}
+</pre>
+====is_zero====
+<pre class="brush: php; toolbar: false;">
+	function smarty_modifier_iszero($variable) {
+	  if($variable === 0 || $variable === '0') {
+		return true;
+	  }
+	  return false;
+	}
+</pre>

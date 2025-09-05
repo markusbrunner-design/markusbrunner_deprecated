@@ -1,0 +1,44 @@
+
+=PHP XML Verarbeitung=
+was sollte man generell beachten:
+# wenn es geht immer vorher das XML mit Tidy überprüfen und bereinigen lassen
+# niemals das xml2array verwenden, da doppelte tabs sich ansonsten überschreiben (key => value)
+# simple xml verwenden und per xPath immer nur den Teil heraus holen, der benötigt wird
+_________________________________
+
+==XML mit XSD validieren==
+<pre class="brush: php; toolbar: false;">
+	class validateXml {
+	  
+		/**
+		* Validates a XML-Document with a XSD-File.
+		*
+		* @param string $xmlContent
+		* @param file $xsd
+		* @return boolean
+		*/
+		public function validate($xmlContent, $xsd) {
+			
+			//check if xmlContent ist not empty
+			if(empty($xmlContent)){
+				return false;
+			}
+			
+			//check if XSD-file exists
+			if(!file_exists($xsd)){
+				return false;
+			}
+
+			//check XML with XSD
+			$dom = new DomDocument(); 
+			$dom->preserveWhiteSpace=false; 
+			$dom->formatOutput = true; 
+			$dom->loadXML($xmlContent);
+			if (@$dom->schemaValidate($xsd)) {     
+				return true;
+			} else {   
+				return false;
+			}
+		}
+	}
+</pre>
